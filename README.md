@@ -1,10 +1,9 @@
-# Why AdapterJ
-
-为什么需要AdapterJ？
+# Why AdapterJ?
+# 为什么需要AdapterJ？
 
 ## 一. 一个简要的版本：
 
-AdapterJ是一个基于Java的高性能Web层开发框架，其设计目标是：
+AdapterJ是一个真正所见即所得，基于Java，高性能Web层开发框架，其设计目标是：
 
 -   HTML与Java彻底分离；
 -   不引入标准HTML与标准Java之外的任何语法、标签或属性；
