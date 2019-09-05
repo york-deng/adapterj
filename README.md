@@ -4,7 +4,12 @@
 
 ## 一. 一个简要的版本：
 
-AdapterJ是一个Web层的应用开发框架。它让诸如JSP标签这类本身就是麻烦的事物从项目中消失！带给你优雅、效率与性能。
+AdapterJ是一个基于Java的高性能Web层开发框架，其设计目标是：
+
+-   HTML与Java彻底分离；
+-   不引入标准HTML与标准Java之外的任何语法、标签或属性；
+-   高性能。
+
 
 **图1: 基于AdapterJ的典型Web应用架构 (简图) **
 
@@ -55,36 +60,23 @@ Swing的图形界面框架非常相似，因此我也认为很多熟悉Android�
 
 ## 二. 一个详细的版本：
 
-> 或许你能从中看到技术人员们共同过着的那种生活![C:\\DOCUME\~1\\YORK\~1.DEN\\LOCALS\~1\\Temp\\SGPicFaceTpBq\\3064\\01E3C508.png](media/image2.png){width="0.15748031496062992in"
-> height="0.15748031496062992in"}\~
-
 事情从2019年3月的一天开始。
 
-连续两三年几乎完全把时间花在Android应用之后，突然转到为一个Android应用做一个数据维护的Web后台。时间很紧，希望重用到Android应用的数据域对象与数据库访问的代码，用Java来完成这个Web应用就成了首先的选择。即便是这样，我还是感受到很强的时间压迫感。需要尽快做决定，又不能做错决定，我不想犯错误！除了需要尽可能重用Android应用已有的Java代码，还需要确保Web应用的开发尽可能简单快捷，还得努力确保这些代码以后能够容易维护，并且还能在需要时确保性能。
+很长一段时间主要把精力花在Android应用之后，突然转到为一个Android应用做一个数据维护的Web后台。时间很紧，希望重用到Android应用的数据域对象与数据库访问的代码，用Java来完成这个Web应用就成了首先的选择。即便是这样，我还是感受到很强的时间压迫感。需要尽快做决定，又不能做错决定，我不想犯错误！除了需要尽可能重用Android应用已有的Java代码，还需要确保Web应用的开发尽可能简单快捷，还得努力确保这些代码以后能够容易维护，并且还能在需要时确保性能。
 
-情感上我期待有类似Ruby on Rails
-那样快捷的开发方式，只是除了潜在的性能因素，Ruby on
-Rails这类方案不能重用Android应用已有的Java代码，那样的话，Web应用的开发周期将很难得到的控制，并且Android应用+Web应用整体的维护成本也很难降下来。代码的维护和升级是一个长期的事情，除了努力确保需要维护尽可能少的代码，还需要确保Android应用与Web应用有尽可能多的代码保持一致。
+情感上我期待有类似Ruby on Rails那样快捷的开发方式，只是除了潜在的性能因素，Ruby on Rails这类方案不能重用Android应用已有的Java代码，那样的话，Web应用的开发周期将很难得到的控制，并且Android应用+Web应用整体的维护成本也很难降下来。代码的维护和升级是一个长期的事情，除了努力确保需要维护尽可能少的代码，还需要确保Android应用与Web应用有尽可能多的代码保持一致。
 
-这是一件棘手的事情！再次翻出Struts、Spring MVC、Spring
-Boost、Tapestry、FreeMarker、Thymeleaf、Velocity、JSF、…最新的技术资料与演示源码，天啦，从开始出现到现在已经很长时间了，这些技术并没有什么真正的变化！在Web层，我没有能够找到什么如同当年Hibernate在持久层、Spring
-Framework作为J2EE框架，曾经带给开发人员惊喜并带给业界变化。我主观的期望这件事已经有所不同，但它还没有发生。
+这是一件棘手的事情！翻出Struts、Spring MVC、Tapestry、FreeMarker、Thymeleaf、Velocity、JSF、...最新的技术资料与演示源码，天啦，从开始出现到现在已经很长时间了，这些技术并没有什么真正的变化！
 
-中午独自一人出去吃饭，大脑不停的运转，我意识到Web层长期以来的一个问题，把Java与HTML、JavaScript混在一起已经够糟糕了，他们还要搞出一大堆新的标签与新的属性，JSP
-标签、JSF标签、FreeMarker的标签、Thymeleaf
-的属性、Velocity的语法、…，这都是些什么啊，他们给我一大堆工具箱和各种各样越出HTML、Java规范的奇门工具，却没有一个足够顺手的。
+中午独自一人出去吃饭，大脑不停的运转，我意识到Web层长期以来的一个问题，把Java与HTML、JavaScript混在一起已经够糟糕了，他们还要搞出一大堆新的标签与新的属性，JSP标签、JSF标签、FreeMarker的标签、Thymeleaf的属性、Velocity的语法、...，他们给我一大堆工具箱和各种各样越出HTML、Java规范的奇门工具，却没有一个足够顺手的。
 
-回头想一下，MVC在Windows MFC、Java
-Swing、Android，甚至一些基于JavaScript与JSON的Web前端框架，都是一副既干净又能干的样子，为什么到了这里在Web层就成了这副啰嗦麻烦还拖泥带水的样子？这不是个牢骚，而是个技术问题！
+回头想一下，MVC在Windows MFC、Java Swing、Android，甚至一些基于JavaScript与JSON的Web前端框架，都是一副既干净又能干的样子，为什么到了这里在Web层就成了这副啰嗦麻烦还拖泥带水的样子？这不是个牢骚，而是个技术问题！
 
-在Java
-Swing与Android中，把POJO、List、Map这类单纯的数据与诸如ListView、GridView这类单纯的View关联起来的，我们称为Adapter。Adapter处理数据与视图的关联，我们称为适配(Adaptive)。
+在Java Swing与Android中，把POJO、List、Map这类单纯的数据与诸如ListView、GridView这类单纯的View关联起来的，我们称为Adapter。Adapter处理数据与视图的关联，我们称为适配(Adaptive)。
 
-回到Web层，Web层的MVC分别是什么呢？如果可以说Struts的Action、Spring
-MVC的Controller都是单纯的控制器(Controller)，POJO、Bean、Entity以及它们的容器List、Map都是单纯的模型(Model)，那么，什么才是单纯的视图(View)？
+回到Web层，Web层的MVC分别是什么呢？如果可以说Struts的Action、Spring MVC的Controller都是单纯的控制器(Controller)，POJO、Bean、Entity以及它们的容器List、Map都是单纯的模型(Model)，那么，什么才是单纯的视图(View)？
 
-与Windows MFC、Java
-Swing、Android这些应用不同，我们讨论的这类Web应用在生产环境下运行的时候，它的View与它的Controller在相距遥远的不同机器上！对浏览器来说，HTML是它的数据或称文档。但是对Web应用来说，HTML就是它希望得到的View。把网页的HTML保存下来然后再用浏览器打开，通常我们仍然可以看到它是之前的样子。
+与Windows MFC、Java Swing、Android这些应用不同，我们讨论的这类Web应用在生产环境下运行的时候，它的View与它的Controller在相距遥远的不同机器上！对浏览器来说，HTML是它的数据或称文档。但是对Web应用来说，HTML就是它希望得到的View。把网页的HTML保存下来然后再用浏览器打开，通常我们仍然可以看到它是之前的样子。
 
 当我想到在这类Web应用中，HTML就是单纯的View，那应该怎样来实现一个干净能干的MVC呢？如果已经有一个用作视图模板的HTML，怎样把数据适配到HTML中才会得到类似Java
 Swing、Android那样的效果呢？为什么现有的模板技术始终有种如鲠在喉的感觉？
@@ -95,11 +87,9 @@ Swing、Android那样的效果呢？为什么现有的模板技术始终有种�
 
 通过在一个Servlet中直接输出HTML，可以得到动态网页。但这通常会需要我们在Servlet中拼接HTML字符串。这是个用HTML“污染”Java的例子。此时此景，另一个角度，既然HTML就是Web应用中单纯的视图，那Servlet就应该是单纯的控制器了。Servlet原本就是控制器，怎么能够把完全属于View的代码，大段大段的放入到Controller当中。
 
-为什么不是Java“污染”了HTML，就是HTML“污染”了Java？要不然就一定要定义一些新的标签、属性或者语法来“污染”HTML与Java。一个应用开发框架引入一些新的标签、属性或者语法，甚至是一件更糟糕的事情，很不幸，JSP竟然全都做到了![C:\\DOCUME\~1\\YORK\~1.DEN\\LOCALS\~1\\Temp\\SGPicFaceTpBq\\2232\\00FF9B9B.png](media/image3.png){width="0.15748031496062992in"
-height="0.15748031496062992in"}
+为什么不是Java“污染”了HTML，就是HTML“污染”了Java？要不然就一定要定义一些新的标签、属性或者语法来“污染”HTML与Java。一个应用开发框架引入一些新的标签、属性或者语法，甚至是一件更糟糕的事情，很不幸，JSP竟然全都做到了！
 
-在我们讨论的这类Web应用中，HTML与Java原本就一个属于浏览器端，一个属于服务器端。原本HTML最好就静静的躺在哪里保持它本来的样子，等待被送到浏览器端。只是，如此这般的岁月静好！哪我们要的动态网页呢![C:\\DOCUME\~1\\YORK\~1.DEN\\LOCALS\~1\\Temp\\SGPicFaceTpBq\\2140\\00A0E99A.png](media/image4.png){width="0.15748031496062992in"
-height="0.15748031496062992in"}？
+在我们讨论的这类Web应用中，HTML与Java原本就一个属于浏览器端，一个属于服务器端。原本HTML最好就静静的躺在哪里保持它本来的样子，等待被送到浏览器端。只是，如此这般的岁月静好！哪我们要的动态网页呢？
 
 别急，…
 
@@ -121,7 +111,7 @@ height="0.15748031496062992in"}？
 
 HTML文件就是Web应用的唯一的视图，还是一个极具灵活性的视图。与之相匹配，我们需要优雅简洁同时又极具灵活性的Adapter！
 
-出于项目的时间压力，我用一两天写好了足够用的部分。剩下的部分，我在之后花了大约两个星期补充完整。
+出于项目的时间压力，我用一两天写好了足够用的部分。剩下的部分，我在之后花了大约几个星期补充完整。
 
 **图2: AdapterJ核心类 **
 
