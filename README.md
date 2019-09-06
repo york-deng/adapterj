@@ -10,7 +10,7 @@ AdapterJ是一个真正所见即所得，基于Java，高性能Web层开发框�
 * 高性能。
 
 <div align="center">  
-<img src="figure/figure_1.png"/>   
+<img src="figure/figure_1-cn.png"/>   
 <p>图1: 基于AdapterJ的典型Web应用架构 (简图) </p>   
 </div>
 
@@ -35,7 +35,8 @@ AdapterJ是一个真正所见即所得，基于Java，高性能Web层开发框�
 * 支持在服务端绑定数据与在浏览器端绑定数据两种模式。
 	- 这一特征使AdapterJ能适用于各种架构的Web应用开发。
 
-用AdapterJ做Web应用开发的思想是：** 用完全基于标准HTML的静态文件做好模板，然后你就只需要把数据适配给模板。 **
+用AdapterJ做Web应用开发的思想是：
+** 用完全基于标准HTML的静态文件做好模板，然后你就只需要把数据适配给模板。 **
 
 这与许多基于JavaScript与JSON的前端应用框架很相似，因此我认为这些前端开发人员会喜欢它，如果他们还会Java与Servlet的话。这也与Android以及Java Swing的图形界面框架非常相似，因此我也认为很多熟悉Android的Java开发者会喜欢它。
 
