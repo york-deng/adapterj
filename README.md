@@ -16,11 +16,11 @@ AdapterJ是一个真正所见即所得，基于Java，高性能Web层开发框�
 
 <br/>
 
-基于AdapterJ做Web应用开发，特点与利益如下：
+基于AdapterJ进行Web应用开发，特点与利益如下：
 
 <div align="center">  
 <img src="figure/table_1-cn.png"/>   
-<p>表1: 基于AdapterJ做Web开发的特点与利益</p>   
+<p>表1: 基于AdapterJ的特点和利益</p>   
 </div>
 
 <br/>
@@ -30,7 +30,7 @@ AdapterJ是一个真正所见即所得，基于Java，高性能Web层开发框�
 
 这与许多基于JavaScript与JSON的前端应用框架很相似，因此我认为这些前端开发人员会喜欢它，如果他们还会Java与Servlet的话。这也与Android以及Java Swing的图形界面框架非常相似，因此我也认为很多熟悉Android的Java开发者会喜欢它。
 
-<br/>
+<>
 
 ## 二. 一个详细的版本：
 
