@@ -26,7 +26,7 @@ The [JMH benchmark for popular Java template engines](https://github.com/york-de
 
 The thinking of web application development based on AdapterJ is：```Write a static template file in standard HTML, and then you just need to adapt the data into the template in Java.```
 
-This approach is very similar to many front-end frameworks based on JavaScript and JSON, so I think these front-end developers will like it. It's also very similar to the GUI framework of Android and Java Swing, so I also think that many Java developers who are familiar with Android will like it.
+Its approach is very similar to many front-end frameworks based on JavaScript and JSON, so I think these front-end developers will like it. It's also very similar to the GUI framework of Android and Java Swing, so I also think that many Java developers who are familiar with Android will like it.
 
 <br/>
 
