@@ -23,8 +23,6 @@ AdapterJ是一个真正所见即所得，基于Java，高性能Web层开发框�
 <p>表1: 基于AdapterJ的特点和利益</p>   
 </div>
 
-<br/>
-
 上文[基于JMH的基准测试](https://github.com/york-deng/template-benchmark)项目，是从[mbosecke/template-benchmark](https://github.com/mbosecke/template-benchmark)项目Fork出来，未做更多修改，仅添加了对AdapterJ的支持。
 
 <br/>
