@@ -24,7 +24,7 @@ AdapterJ是一个真正所见即所得，基于Java，高性能Web层开发框�
 
 上文[基于JMH的基准测试](https://github.com/york-deng/template-benchmark)项目，是从[mbosecke/template-benchmark](https://github.com/mbosecke/template-benchmark)项目Fork出来，未做更多修改，仅添加了对AdapterJ的支持。
 
-用AdapterJ做Web应用开发的思想是：**用完全基于标准HTML的静态文件做好模板，然后你就只需要在Java中把数据适配给模板。**
+用AdapterJ做Web应用开发的思想是：<font color="darkblue">用完全基于标准HTML的静态文件做好模板，然后你就只需要在Java中把数据适配给模板。</font>
 
 这与许多基于JavaScript与JSON的前端应用框架很相似，因此我认为这些前端开发者会喜欢它；这也与Android以及Java Swing的图形界面框架非常相似，因此我也认为很多熟悉Android的Java开发者会喜欢它。
 
@@ -53,7 +53,7 @@ AdapterJ是一个真正所见即所得，基于Java，高性能Web层开发框�
 
 当我想到在这类Web应用中，HTML就是单纯的View，那应该怎样来实现一个干净能干的MVC呢？如果已经有一个用作视图模板的HTML，怎样把数据适配到HTML中才会得到类似Java Swing、Android那样的效果呢？为什么现有的模板技术始终有种如鲠在喉的感觉？
 
-原因不难想到，**从PHP到JSP、JSF，甚至Thymeleaf，它们都“污染”了标准的HTML，它们各自定义的各种特殊标签与特殊属性，除了用于把数据适配到HTML中，并没有其他的用处！**一个好的技术方案，不应该让人看到这些原本需要隐藏在接口(Interface)下的东西。__标准的HTML是接口，标准的JavaScript是接口，标准的CSS是接口，标准的Java是接口，这些是大家都需要遵循的规范，这些才是大家需要知道的语法、标签、属性，这里边不应该包括哪些由应用开发框架定义的语法、标签、属性。__
+原因不难想到，<font color="darkblue">从PHP到JSP、JSF，甚至Thymeleaf，它们都“污染”了标准的HTML，它们各自定义的各种特殊标签与特殊属性，除了用于把数据适配到HTML中，并没有其他的用处！</font>一个好的技术方案，不应该让人看到这些原本需要隐藏在接口(Interface)下的东西。<font color="darkblue">标准的HTML、标准的JavaScript、标准的CSS、标准的Java，这些是编程接口，是大家需要知道的语法、标签、属性，这里边不应该包括哪些由应用开发框架定义的语法、标签、属性。</font>
 
 我们不要由应用开发框架定义的语法、标签和属性，也不要把不同的东西混在一起再拿别人。
 
