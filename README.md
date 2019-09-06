@@ -3,10 +3,10 @@
 
 ## 1. A Brief Explanation:   
 
-AdapterJ is a real WYSIWYG (what you see is what you get), java-based, high-performance Web layer development framework. Its design goals are: 
+AdapterJ is a real WYSIWYG (what you see is what you get), java-based, high-performance Web Layer framework. Its design goals are: 
 
-* Separate HTML and Java completely; 
-* Do NOT introduce any syntax, tags or attributes other than standard HTML and standard Java; 
+* Separate HTML and Java completely. 
+* Do NOT introduce any syntax, tags or attributes other than standard HTML and standard Java. 
 * High performance. 
 
 <div align="center">  
@@ -22,7 +22,7 @@ The features and benefits of Web application development based on AdapterJ are a
 <p>Table 1: The features and benefits of work with AdapterJ</p>   
 </div>
 
-The [JMH benchmark for popular Java template engines](https://github.com/york-deng/template-benchmark) was forked from [mbosecke/template-benchmark](https://github.com/mbosecke/template-benchmark), no more changes only added support for AdapterJ.
+The [JMH benchmark for popular Java template engines](https://github.com/york-deng/template-benchmark) was forked from [mbosecke/template-benchmark](https://github.com/mbosecke/template-benchmark), no more modifications except for adding AdapterJ.
 
 The thinking of web application development based on AdapterJ is：```Write a static template file in standard HTML, and then you just need to adapt the data into the template in Java.```
 
@@ -30,8 +30,8 @@ This approach is very similar to many front-end application frameworks based on 
 
 <br/>
 
-## 二. 一个详细的版本：
-下面说说AdapterJ的设计思路。
+## 2. A Detailed Explanation:
+I will talk about the design of AdapterJ.
 
 事情从2019年3月的一天开始。
 
