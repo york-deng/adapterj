@@ -40,6 +40,8 @@ AdapterJ是一个真正所见即所得，基于Java，高性能Web层开发框�
 
 这与许多基于JavaScript与JSON的前端应用框架很相似，因此我认为这些前端开发人员会喜欢它，如果他们还会Java与Servlet的话。这也与Android以及Java Swing的图形界面框架非常相似，因此我也认为很多熟悉Android的Java开发者会喜欢它。
 
+<br/>
+
 ## 二. 一个详细的版本：
 
 事情从2019年3月的一天开始。
