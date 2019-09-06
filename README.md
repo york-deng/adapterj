@@ -31,7 +31,7 @@ Its approach is very similar to many front-end frameworks based on JavaScript an
 <br/>
 
 ## A Detailed Explanation   
-I will talk about the design of AdapterJ.
+I will talk about the design idea of AdapterJ below.
 
 事情从2019年3月的一天开始。
 
