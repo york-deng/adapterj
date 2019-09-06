@@ -59,7 +59,7 @@ AdapterJ是一个真正所见即所得，基于Java，高性能Web层开发框�
 + green
 ! orange
 # gray
--! Warning !-
+ABCD -!Warning!- DEFG
 ```
 
 
