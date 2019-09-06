@@ -1,5 +1,5 @@
 # Why AdapterJ？
-*点击这里阅读[为什么需要AdapterJ (中文)](https://github.com/york-deng/adapterj/README_CN.md)*
+*点击[这里](https://github.com/york-deng/adapterj/README_CN.md)阅读[为什么需要AdapterJ (中文)](https://github.com/york-deng/adapterj/README_CN.md)*
 
 ## 1. A Brief Explanation:   
 
