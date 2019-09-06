@@ -5,7 +5,7 @@
 AdapterJ是一个真正所见即所得，基于Java，高性能Web层开发框架，其设计目标是：   
 
 * HTML与Java彻底分离；
-* 不引入标准HTML与标准Java__之外__的任何语法、标签、属性；
+* 不引入标准HTML与标准Java之外的任何语法、标签、属性；
 * 高性能。
 
 <div align="center">  
