@@ -113,7 +113,3 @@ HTML文件就是Web应用的唯一的视图，还是一个极具灵活性的视�
 </div>
 
 <br/>
-
-** 来源: [*https://github.com/york-deng/template-benchmark*](https://github.com/york-deng/template-benchmark) **
-
-<br/>
