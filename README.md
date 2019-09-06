@@ -1,7 +1,7 @@
 # Why AdapterJ？
 *点击[这里](https://github.com/york-deng/adapterj/blob/master/README_CN.md)阅读[为什么需要AdapterJ (中文)](https://github.com/york-deng/adapterj/blob/master/README_CN.md)*
 
-## 1. A Brief Explanation   
+## A Brief Explanation   
 
 AdapterJ is a real WYSIWYG (what you see is what you get), java-based, high-performance Web Layer framework. Its design goals are: 
 
@@ -30,7 +30,7 @@ This approach is very similar to many front-end frameworks based on JavaScript a
 
 <br/>
 
-## 2. A Detailed Explanation   
+## A Detailed Explanation   
 I will talk about the design of AdapterJ.
 
 事情从2019年3月的一天开始。
