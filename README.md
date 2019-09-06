@@ -87,21 +87,21 @@ HTML文件就是Web应用的唯一的视图，还是一个极具灵活性的视�
 出于项目的时间压力，我用一两天写好了足够用的部分。剩下的部分，我在之后花了大约几个星期补充完整。
 
 <div align="center">  
-<img src="figure/figure_2.png"/>   
+<img src="figure/figure_2-cn.png"/>   
 <p>图2: AdapterJ核心类</p>   
 </div>
 
 <br/>
 
 <div align="center">  
-<img src="figure/figure_3.png"/>   
+<img src="figure/figure_3-cn.png"/>   
 <p>图3: 基于AdapterJ的典型Web层架构</p>   
 </div>
 
 <br/>
 
 <div align="center">  
-<img src="figure/figure_4.png"/>   
+<img src="figure/figure_4-cn.png"/>   
 <p>图4: 基于AdapterJ的应用典型请求响应过程 (序列图) </p>   
 </div>
 
