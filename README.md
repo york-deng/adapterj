@@ -1,32 +1,31 @@
-# 为什么需要AdapterJ？
+# Why AdapterJ？
 
-## 一. 一个简要的版本：
+## 1. A Brief Explanation:   
 
-AdapterJ是一个真正所见即所得，基于Java，高性能Web层开发框架，其设计目标是：   
+AdapterJ is a real WYSIWYG (what you see is what you get), java-based, high-performance Web layer development framework. Its design goals are: 
 
-* HTML与Java彻底分离；
-* 不引入标准HTML与标准Java之外的任何语法、标签、属性；
-* 高性能。
+* Separate HTML and Java completely; 
+* Do NOT introduce any syntax, tags or attributes other than standard HTML and standard Java; 
+* High performance. 
 
 <div align="center">  
-<img src="figure/figure_1-cn.png"/>   
-<p>图1: 基于AdapterJ的典型Web应用架构 (简图) </p>   
+<img src="figure/figure_1-en.png"/>   
+<p>Figure 1: Typical web application architecture based on AdapterJ (Simplified)</p>   
 </div>
 
 <br/>
 
-基于AdapterJ进行Web应用开发获得的特点与利益如下：
-
+The features and benefits of Web application development based on AdapterJ are as follows:
 <div align="center">  
-<img src="figure/table_1-cn.png"/>   
-<p>表1: 基于AdapterJ的特点和利益</p>   
+<img src="figure/table_1-en.png"/>   
+<p>Table 1: The features and benefits of work with AdapterJ</p>   
 </div>
 
-上文[基于JMH的基准测试](https://github.com/york-deng/template-benchmark)项目，是从[mbosecke/template-benchmark](https://github.com/mbosecke/template-benchmark)项目Fork出来，未做更多修改，仅添加了对AdapterJ的支持。
+The [JMH benchmark for popular Java template engines](https://github.com/york-deng/template-benchmark) was forked from [mbosecke/template-benchmark](https://github.com/mbosecke/template-benchmark), no more changes only added support for AdapterJ.
 
-用AdapterJ做Web应用开发的思想是：```用完全基于标准HTML的静态文件做好模板，然后你就只需要在Java中把数据适配给模板。```
+The thinking of web application development based on AdapterJ is：```Write a static template file in standard HTML, and then you just need to adapt the data into the template in Java.```
 
-这与许多基于JavaScript与JSON的前端应用框架很相似，因此我认为这些前端开发者会喜欢它；这也与Android以及Java Swing的图形界面框架非常相似，因此我也认为很多熟悉Android的Java开发者会喜欢它。
+This approach is very similar to many front-end application frameworks based on JavaScript and JSON, so I think these front-end developers will like it. It's also very similar to the GUI framework of Android and Java Swing, so I also think that many Java developers who are familiar with Android will like it.
 
 <br/>
 
