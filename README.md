@@ -25,12 +25,16 @@ AdapterJ是一个真正所见即所得，基于Java，高性能Web层开发框�
 
 <br/>
 
+上文[基于JMH的基准测试](https://github.com/york-deng/template-benchmark)项目，是从[mbosecke/template-benchmark](https://github.com/mbosecke/template-benchmark)项目Fork出来，未做更多修改，仅添加了对AdapterJ的支持。
+
+<br/>
+
 用AdapterJ做Web应用开发的思想是：
-** 用完全基于标准HTML的静态文件做好模板，然后你就只需要把数据适配给模板。 **
+** 用完全基于标准HTML的静态文件做好模板，然后你就只需要在Java中把数据适配给模板。 **
 
 这与许多基于JavaScript与JSON的前端应用框架很相似，因此我认为这些前端开发人员会喜欢它，如果他们还会Java与Servlet的话。这也与Android以及Java Swing的图形界面框架非常相似，因此我也认为很多熟悉Android的Java开发者会喜欢它。
 
-<>
+<br/>
 
 ## 二. 一个详细的版本：
 
