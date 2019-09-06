@@ -1,4 +1,3 @@
-# Why AdapterJ?
 # 为什么需要AdapterJ？
 
 ## 一. 一个简要的版本：
