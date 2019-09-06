@@ -1,7 +1,7 @@
 # Why AdapterJ？
 *点击[这里](https://github.com/york-deng/adapterj/README_CN.md)阅读[为什么需要AdapterJ (中文)](https://github.com/york-deng/adapterj/README_CN.md)*
 
-## 1. A Brief Explanation:   
+## 1. A Brief Explanation   
 
 AdapterJ is a real WYSIWYG (what you see is what you get), java-based, high-performance Web Layer framework. Its design goals are: 
 
@@ -30,7 +30,7 @@ This approach is very similar to many front-end frameworks based on JavaScript a
 
 <br/>
 
-## 2. A Detailed Explanation:
+## 2. A Detailed Explanation   
 I will talk about the design of AdapterJ.
 
 事情从2019年3月的一天开始。
@@ -86,29 +86,29 @@ HTML文件就是Web应用的唯一的视图，还是一个极具灵活性的视�
 出于项目的时间压力，我用一两天写好了足够用的部分。剩下的部分，我在之后花了大约几个星期补充完整。
 
 <div align="center">  
-<img src="figure/figure_2-cn.png"/>   
-<p>图2: AdapterJ核心类</p>   
+<img src="figure/figure_2-en.png"/>   
+<p>Figure 2: AdapterJ core class diagram</p>   
 </div>
 
 <br/>
 
 <div align="center">  
-<img src="figure/figure_3-cn.png"/>   
-<p>图3: 基于AdapterJ的典型Web层架构</p>   
+<img src="figure/figure_3-en.png"/>   
+<p>Figure 3: Typical web application architecture based on AdapterJ</p>   
 </div>
 
 <br/>
 
 <div align="center">  
-<img src="figure/figure_4-cn.png"/>   
-<p>图4: 基于AdapterJ的应用典型请求响应过程 (序列图) </p>   
+<img src="figure/figure_4-en.png"/>   
+<p>Figure 4: Typical request response process of the web application based on AdapterJ (sequence diagram)</p>   
 </div>
 
 <br/>
 
 <div align="center">  
 <img src="figure/chart_1.png"/>   
-<p>图5: JMH benchmark of the most popular Java template engines </p>   
+<p>Figure 5: JMH benchmark of the most popular Java template engines </p>   
 </div>
 
 <br/>
