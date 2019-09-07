@@ -5,7 +5,7 @@
 
 AdapterJ is a real WYSIWYG (what you see is what you get), java-based, high-performance Web Layer framework. Its design goals are as follows: 
 
-* Separate HTML and Java completely. 
+* Completely separate HTML and Java. 
 * Do NOT introduce any special syntax, tags, tag attributes other than standard HTML and standard Java. 
 * High performance. 
 
@@ -24,33 +24,32 @@ The features and benefits of Web application development based on AdapterJ are a
 
 The [JMH benchmark for popular Java template engines](https://github.com/york-deng/template-benchmark) was forked from [mbosecke/template-benchmark](https://github.com/mbosecke/template-benchmark), no more modifications except for adding AdapterJ.
 
-The thinking of web application development based on AdapterJ is：```Write a static template file in standard HTML, and then you just need to adapt the data into the template in Java.```
+The thinking of web application development based on AdapterJ is ```Write a static template file in standard HTML, and then you just need to adapt the data into the template in Java.```
 
 Its approach is very similar to many front-end frameworks based on JavaScript and JSON, so I think these front-end developers will like it. It's also very similar to the GUI framework of Android and Java Swing, so I also think that many Java developers who are familiar with Android will like it.
 
 <br/>
 
 ## A Detailed Explanation   
-I will talk about the design idea of AdapterJ below.
 
-It started on one day of March 2019.
+I will talk about the design idea of AdapterJ as below.
 
-After spending a long time focusing on building Android apps, I suddenly needed to build a web based managment application for an Android app. Time is very tight, we hope to reuse the source code of the Android app as much as possible, such as Domain Objects and Data Access Objects, so using Java to build the web application is the first choice. Even so, I still feel a strong sense of time pressure. I need to make a decision as soon as possible, but I can't choose a wrong way! In addition to reusing the Java source code already in the Android app, it is also necessary to ensure that the development of the web application is as simple and fast as possible, and I also have to make sure that the source code is easy to maintain in the future, and make sure it also keep good performance when needed.
+It started one day in March 2019.
 
-Emotionally, I expect to have a development method similar to Ruby on Rails, but in addition to the potential performance factors, Ruby on Rails can't reuse the Java source code already in the Android app. In this case, choosing a non Java based solution, the development cost of the web application should be difficult to control, and the maintenance cost of the **Android app + web application as a whole** should be difficult to reduce. Maintenance and upgrade of the source code is a long-term task. In addition to working hard to ensure that you need to maintain source code as little as possible. I also need to make sure that the Android app and the web application is reused each other's source code as much as possible.
+After spending a long time focusing on building Android apps, I suddenly needed to build a web-based management application for an Android app. Time is very tight, we hope to reuse the source code of the Android app as much as possible, such as Domain Objects and Data Access Objects, so using Java to build the web application is the first choice. Even so, I still feel a strong sense of time pressure. I need to make a decision as soon as possible, but I can't choose the wrong way! In addition to reusing the Java source code already in the Android app, it is also necessary to ensure that the development of the web application is as simple and fast as possible, and I also have to make sure that the source code is easy to maintain in the future, and make sure it also keep good performance when needed.
+
+Emotionally, I expect to have a development method similar to Ruby on Rails, but in addition to the potential performance factors, Ruby on Rails can't reuse the Java source code already in the Android app. In this case, choosing a non-java-based solution, the development cost of the web application should be difficult to control, and the maintenance cost of the **Android app + web application as a whole** should be difficult to reduce. Maintenance and upgrade of the source code is a long-term task. In addition to working hard to ensure that you need to maintain source code as little as possible. I also need to make sure that the Android app and the web application is reused each other's source code as much as possible.
 
 This is a tricky thing! So I checked out the latest technical materials and demo source code of Struts, Spring MVC, Tapestry, FreeMarker, Thymeleaf, Velocity, JSF, ..., it’s been a long time since their beginning, but these are not any real change.
-
-I went out to eat alone at noon, my brain kept running. I realized that there was a long-standing problem in the Web Layer. It was bad enough to mix Java with HTML and JavaScript. They also made a lot of new special tags and new special tag attributes, such as JSP tags, JSF tags, FreeMarker tags, Thymeleaf tag attributes, Velocity syntax, ..., they give us a bunch of toolboxes and a variety of exotic tools that go out of standard HTML and standard Java specifications. But NO ONE good enough :sweat:.
+I went out to eat alone at noon, my brain kept running. I realized that there was a long-standing problem in the Web Layer. It was bad enough to mix Java with HTML and JavaScript. They also made a lot of new special tags and new special tag attributes, such as JSP tags, JSF tags, FreeMarker tags, Thymeleaf tag attributes, Velocity syntax, ..., they give us a bunch of toolboxes and a variety of exotic tools that go out of standard HTML and standard Java specifications. But NO ONE good enough 😓.
 
 Looking back, MVC is a clean and capable guy in Windows MFC, Java Swing, Android, and even some web front-end frameworks based on JavaScript and JSON. Why is it becoming a troublesome here? This is not a complaint, but a technical issue!
 
-In Java Swing and Android, which is used to associate simple data such as POJO, List, and Map with simple Views such as ListView and GridView, we call it Adapter. Using Adapter to handle the association of data with views, we call it Adaptive.
+In Java Swing and Android, which is used to associate simple data such as POJO, List, and Map with simple Views such as ListView and GridView, we call it Adapter. Using an Adapter to handle the association of data with views, we call it Adaptive.
 
+What are the M, V, and C in the Web Layer? If we can say that Struts Action, Spring MVC Controller is the "simple Controller" (C), and POJO, Bean, Entity and their container such as List, Map is the "simple Model" (M), what is the "simple View" (V)?
 
-What are the M, V, and C in the Web Layer? If we can say that Struts Action, Spring MVC Controller is "simple Controller" (C), and POJO, Bean, Entity and their container such as List, Map is "simple Model" (M), what is "simple View" (V)?
-
-Unlike Windows MFC, Java Swing, and Android applications, the web applications we talk about that's running in a production environment, its View is on a different machine than its Controller! For a web browser, HTML is its data or document. But for a web application, HTML is the View it wants to get. Usually, save these HTML code in a web page into a HTML file, and open this HTML file with a web browser, we can still see what it was like.
+Unlike Windows MFC, Java Swing, and Android applications, the web applications we talk about that's running in a production environment, its View is on a different machine than its Controller! For a web browser, HTML is its data or document. But for a web application, HTML is the View it wants to get. Usually, save these HTML codes in a web page into a HTML file, and open this HTML file with a web browser, we can still see what it was like.
 
 当我想到在这类Web应用中，HTML就是单纯的View，那应该怎样来实现一个干净能干的MVC呢？如果已经有一个用作视图模板的HTML，怎样把数据适配到HTML中才会得到类似Java Swing、Android那样的效果呢？为什么现有的模板技术始终有种如鲠在喉的感觉:confounded:？
 
