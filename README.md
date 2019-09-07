@@ -3,7 +3,7 @@
 
 ## A Brief Explanation   
 
-AdapterJ is a real WYSIWYG (what you see is what you get), java-based, high-performance Web Layer framework. Its design goals are: 
+AdapterJ is a real WYSIWYG (what you see is what you get), java-based, high-performance Web Layer framework. Its design goals are as follows: 
 
 * Separate HTML and Java completely. 
 * Do NOT introduce any special syntax, tags, tag attributes other than standard HTML and standard Java. 
@@ -37,7 +37,7 @@ It started on one day of March 2019.
 
 After spending a long time focusing on building Android apps, I suddenly needed to build a web based managment application for an Android app. Time is very tight, we hope to reuse the source code of the Android app as much as possible, such as Domain Objects and Data Access Objects, so using Java to build the web application is the first choice. Even so, I still feel a strong sense of time pressure. I need to make a decision as soon as possible, but I can't choose a wrong way! In addition to reusing the Java source code already in the Android app, it is also necessary to ensure that the development of the web application is as simple and fast as possible, and I also have to make sure that the source code is easy to maintain in the future, and make sure it also keep good performance when needed.
 
-Emotionally, I expect to have a development method similar to Ruby on Rails, but in addition to the potential performance factors, Ruby on Rails can't reuse the Java code already in the Android app. In this case, choosing a non Java based solution, the development cost of the web application should be difficult to control, and the maintenance cost of the **Android app + web application as a whole** should be difficult to reduce. Maintenance and upgrade of the source code is a long-term task. In addition to working hard to ensure that you need to maintain source code as little as possible. I also need to make sure that the Android app and the web application is reused each other's source code as much as possible.
+Emotionally, I expect to have a development method similar to Ruby on Rails, but in addition to the potential performance factors, Ruby on Rails can't reuse the Java source code already in the Android app. In this case, choosing a non Java based solution, the development cost of the web application should be difficult to control, and the maintenance cost of the **Android app + web application as a whole** should be difficult to reduce. Maintenance and upgrade of the source code is a long-term task. In addition to working hard to ensure that you need to maintain source code as little as possible. I also need to make sure that the Android app and the web application is reused each other's source code as much as possible.
 
 This is a tricky thing! So I checked out the latest technical materials and demo source code of Struts, Spring MVC, Tapestry, FreeMarker, Thymeleaf, Velocity, JSF, ..., it’s been a long time since their beginning, but these are not any real change.
 
