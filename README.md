@@ -50,7 +50,7 @@ In Java Swing and Android, which is used to associate simple data such as POJO, 
 
 What are the M, V, and C in the Web Layer? If we can say that Struts Action, Spring MVC Controller is "simple Controller" (C), and POJO, Bean, Entity and their container such as List, Map is "simple Model" (M), what is "simple View" (V)?
 
-与Windows MFC、Java Swing、Android这些应用不同，我们讨论的这类Web应用在生产环境下运行的时候，它的View与它的Controller在相距遥远的不同机器上！对浏览器来说，HTML是它的数据或称文档。但是对Web应用来说，HTML就是它希望得到的View。把网页的HTML保存下来然后再用浏览器打开，通常我们仍然可以看到它是之前的样子。
+Unlike Windows MFC, Java Swing, and Android applications, the web applications we talk about that's running in a production environment, its View is on a different machine than its Controller! For the browser, HTML is its data or document. But for web application, HTML is the View it wants to get. Usually, save these HTML code in a web page into a HTML file, and open this HTML file with a web browser, we can still see what it was like.
 
 当我想到在这类Web应用中，HTML就是单纯的View，那应该怎样来实现一个干净能干的MVC呢？如果已经有一个用作视图模板的HTML，怎样把数据适配到HTML中才会得到类似Java Swing、Android那样的效果呢？为什么现有的模板技术始终有种如鲠在喉的感觉:confounded:？
 
