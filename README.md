@@ -33,9 +33,9 @@ Its approach is very similar to many front-end frameworks based on JavaScript an
 ## A Detailed Explanation   
 I will talk about the design idea of AdapterJ below.
 
-事情从2019年3月的一天开始。
+Is started on one day of March 2019.
 
-很长一段时间主要把精力花在Android应用之后，突然转到为一个Android应用做一个数据维护的Web后台。时间很紧，希望重用到Android应用的数据域对象与数据库访问的代码，用Java来完成这个Web应用就成了首先的选择。即便是这样，我还是感受到很强的时间压迫感。需要尽快做决定，又不能做错决定！除了需要尽可能重用Android应用已有的Java代码，还需要确保Web应用的开发尽可能简单快捷，还得努力确保这些代码以后能够容易维护，并且还能在需要时确保性能。
+After spending a long time focusing on building Android apps, I suddenly needed to build a web based managment applicayion for an Android app. Time is very tight, we hope to reuse the source code of the Android app as much as possible, such as Domain Objects and Data Access Objects, so using Java to complete the web application is the first choice. Even so, I still feel a strong sense of time pressure. I need to make a decision as soon as possible, but I can't choose the wrong way! In addition to reusing the Java source code already in the Android app, it is also necessary to ensure that the development of the web application is as simple and fast as possible, and I also have to make sure that the source code is easy to maintain in the future, and it also has good performance when needed.
 
 情感上我期待有类似Ruby on Rails那样快捷的开发方式，只是除了潜在的性能因素，Ruby on Rails这类方案不能重用Android应用已有的Java代码，那样的话，Web应用的开发周期将很难得到的控制，并且**Android应用+Web应用**整体的维护成本也很难降下来。代码的维护和升级是一个长期的事情，除了努力确保需要维护尽可能少的代码，还需要确保Android应用与Web应用有尽可能多的代码保持一致。
 
