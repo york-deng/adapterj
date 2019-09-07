@@ -37,9 +37,9 @@ It started on one day of March 2019.
 
 After spending a long time focusing on building Android apps, I suddenly needed to build a web based managment application for an Android app. Time is very tight, we hope to reuse the source code of the Android app as much as possible, such as Domain Objects and Data Access Objects, so using Java to build the web application is the first choice. Even so, I still feel a strong sense of time pressure. I need to make a decision as soon as possible, but I can't choose the wrong way! In addition to reusing the Java source code already in the Android app, it is also necessary to ensure that the development of the web application is as simple and fast as possible, and I also have to make sure that the source code is easy to maintain in the future, and make sure it also has good performance when needed.
 
-情感上我期待有类似Ruby on Rails那样快捷的开发方式，只是除了潜在的性能因素，Ruby on Rails这类方案不能重用Android应用已有的Java代码，那样的话，Web应用的开发周期将很难得到的控制，并且**Android应用+Web应用**整体的维护成本也很难降下来。代码的维护和升级是一个长期的事情，除了努力确保需要维护尽可能少的代码，还需要确保Android应用与Web应用有尽可能多的代码保持一致。
+Emotionally, I expect to have a development method similar to Ruby on Rails, but in addition to the potential performance factors, Ruby on Rails can't reuse the Java code already in the Android app. In this case, choosing a non Java based solution, the development cost of the web application should be difficult to control, and the maintenance cost of the **Android app + web application** as a whole is difficult to reduce. Maintenance and upgrade of the source code is a long-term thing. In addition to working hard to ensure that you need to maintain as little source code as possible. I also need to make sure that the source code for the Android app and the web application is reused as much as possible.
 
-这是一件棘手的事情！翻出Struts、Spring MVC、Tapestry、FreeMarker、Thymeleaf、Velocity、JSF、...最新的技术资料与演示源码，天啦，从开始出现到现在已经很长时间了，这些技术并没有什么真正的变化！
+This is a tricky thing! So I checked out the latest technical materials and demo source code of Struts, Spring MVC, Tapestry, FreeMarker, Thymeleaf, Velocity, JSF, ..., it’s been a long time since their beginning, but these are not any real change.
 
 中午独自一人出去吃饭，大脑不停的运转，我意识到Web层长期以来的一个问题，把Java与HTML、JavaScript混在一起已经够糟糕了，他们还要搞出一大堆新的标签与新的属性，JSP标签、JSF标签、FreeMarker的标签、Thymeleaf的属性、Velocity的语法、...，他们给我一大堆工具箱和各种各样越出HTML、Java规范的奇门工具，却没有一个足够顺手的:sweat:。
 
