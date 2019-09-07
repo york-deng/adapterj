@@ -33,7 +33,7 @@ Its approach is very similar to many front-end frameworks based on JavaScript an
 ## A Detailed Explanation   
 I will talk about the design idea of AdapterJ below.
 
-Is started on one day of March 2019.
+It started on one day of March 2019.
 
 After spending a long time focusing on building Android apps, I suddenly needed to build a web based managment applicayion for an Android app. Time is very tight, we hope to reuse the source code of the Android app as much as possible, such as Domain Objects and Data Access Objects, so using Java to complete the web application is the first choice. Even so, I still feel a strong sense of time pressure. I need to make a decision as soon as possible, but I can't choose the wrong way! In addition to reusing the Java source code already in the Android app, it is also necessary to ensure that the development of the web application is as simple and fast as possible, and I also have to make sure that the source code is easy to maintain in the future, and it also has good performance when needed.
 
