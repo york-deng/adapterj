@@ -43,8 +43,6 @@ This is a tricky thing! So I checked out the latest technical materials and demo
 
 I went out to eat alone at noon, my brain kept running. I realized that there was a long-standing problem in the Web Layer. It was bad enough to mix Java with HTML and JavaScript. They also made a lot of new special tags and new special tag attributes, such as JSP tags, JSF tags, FreeMarker tags, Thymeleaf tag attributes, Velocity syntax, ..., they give us a bunch of toolboxes and a variety of exotic tools that go out of standard HTML and standard Java specifications. But NO ONE good enough :sweat:.
 
-中午独自一人出去吃饭，大脑不停的运转，我意识到Web层长期以来的一个问题，把Java与HTML、JavaScript混在一起已经够糟糕了，他们还要搞出一大堆新的标签与新的属性，JSP标签、JSF标签、FreeMarker的标签、Thymeleaf的属性、Velocity的语法、...，他们给我一大堆工具箱和各种各样越出HTML、Java规范的奇门工具，却没有一个足够顺手的:sweat:。
-
 回头想一下，MVC在Windows MFC、Java Swing、Android，甚至一些基于JavaScript与JSON的Web前端框架，都是一副既干净又能干的样子，为什么到了这里在Web层就成了这副啰嗦麻烦还拖泥带水的样子？这不是个牢骚，而是个技术问题！
 
 在Java Swing与Android中，把POJO、List、Map这类单纯的数据与诸如ListView、GridView这类单纯的View关联起来的，我们称为Adapter。Adapter处理数据与视图的关联，我们称为适配(Adaptive)。
