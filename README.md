@@ -51,7 +51,7 @@ What are the M, V, and C in the Web Layer? If we can say that Struts Action, Spr
 
 Unlike Windows MFC, Java Swing, and Android applications, the web applications we talk about that's running in a production environment, its View is on a different machine than its Controller! For a web browser, HTML is its data or document. But for a web application, HTML is the View it wants to get. Usually, save these HTML codes in a web page into a HTML file, and open this HTML file with a web browser, we can still see what it was like.
 
-When I think, if HTML is a simple View in such a web application, how should we implement a clean and capable MVC framework? If we already have one HTML file that is used as a view, how do we adapt the data into HTML view to get the same effect as Java Swing and Android? Why does the existing web framework always give us a feeling of being in the throat:confounded:？
+When I think, if HTML is a simple View in such a web application, how should we implement a clean and capable MVC framework? If we already have one HTML file that is used as a view, how do we adapt the data into HTML view to get the same effect as Java Swing and Android? Why does the existing web framework always give us a feeling of being in the throat :confounded:？
 
 The reason is not hard to think of, ```from PHP to JSP, JSF, and even Thymeleaf, they are "polluting" of standard HTML. The special tags and tag attributes they define, in addition to being used to adapt data into HTML, have no other use! ```A good technical solution, it should not let the developer see what they need to hide under the programming interface. ```Standard HTML, standard JavaScript, standard CSS, standard Java, these are programming interfaces, which are the syntax, tags, and attributes that developers need to know. It should not include the special syntax, tags, and attributes defined by an application framework.```
 
@@ -61,9 +61,9 @@ A dynamic web page can be obtained by outputting HTML directly in a Servlet (or 
 
 Why aren't they "polluting" HTML in Java, or is it HTML "polluting" in Java? Otherwise, they must define some special syntax, tags, or attributes and then let them "polluting" HTML and Java. An application framework introduces some special syntax, tags, or attributes, and even a worse way. Unfortunately, JSP is all done:smiling_imp:！
 
-在我们讨论的这类Web应用中，HTML与Java，原本就一个属于浏览器端，一个属于服务器端。原本HTML最好就静静的躺在哪里保持它本来的样子，等待被送到浏览器端。只是，如此这般的岁月静好！哪我们需要的动态网页呢？
+In such web applications we discussed, HTML and Java, originally one belonged to some web browser and another belonged to any server. The original HTML is best to stay quietly where to keep it as it is, waiting to be sent to some web browser. Just, it’s so quiet! How to get a dynamic web page do we need?
 
-别急，…
+Don't worry, ...
 
 另一个问题，为什么很多基于JavaScript与JSON的Web前端应用，反而还可以是一副既干净又能干的样子？这种应用架构下服务端只需要负责提供数据，数据与视图的适配或者称为绑定由JavaScript来完成。JavaScript可以方便的访问HTML的DOM结构，因此JavaScript完全可以做到。至于是否做得够好，则由前端应用开发框架的设计者与开发者决定。
 
