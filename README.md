@@ -77,15 +77,15 @@ This is a good idea, maybe performance is a bit problematic, but intuitively thi
 
 In addition to accessing the HTML DOM structure through Java, we can also output HTML, data and JavaScript code to the browser at one time. When the onload event of the BODY tag is triggered, the data binding should be completed by JavaScript, and the display result of the web page should be updated. This is a way to improve performance. The disadvantage is that using JavaScript to output data is not friendly to search engines, it can only be applied to certain application scenarios.
 
-另一个改善性能的方式，与JSP改善性能的方式思路类似。基于不同的HTML模板动态生成不同的被称为视图加速器(ViewAccelerator)的Java类，在这些视图加速器中完成数据与HTML字符串的拼接。预计这种方式可望获得的性能，应该能够接近在Servlet或Verticle中拼接并输出HTML字符串的性能。JSP的性能优化方式，应用服务器在运行时把JSP动态编译成一个Servlet的过程对应用开发人员来说可以是完全不可见的，同样动态生成视图加速器的过程对应用开发人员也可以是完全不可见的。
+Another way to improve performance is similar to how JSP improves its performance. The web framework can dynamically generate a ViewAccelerator class from the HTML template at runtime, and splicing HTML string in this ViewAccelerator. In this way, the performance expected should be able to approximate the performance of direct splicing and outputting HTML string in Servlet (or Verticle). The JSP performance optimization method, the application server dynamically compiles a JSP into a Servlet class at runtime can be invisible to the application developers. Similarly, the web framework dynamically generating a ViewAccelerator class at runtime also can be invisible to the application developers.
 
-这时我已经有了它的名字，AdapterJ。
+When I got here, I already had its name, AdapterJ.
 
-这个名字意指，Web应用开发中需要我们用Java或者任何基于Java的技术解决的Web层的问题，不是关于View，而是关于Adapter。
+This name means that web application development requires us to solve in Web Layer with Java or any java-based technology, not about View, but Adapter.
 
-HTML文件就是Web应用的唯一的视图，还是一个极具灵活性的视图。与之相匹配，我们需要优雅简洁同时又极具灵活性的Adapter！
+```An HTML file is the only view of a web application and is a very flexible view. To match it, we need an elegant, simple and flexible Adapter!```
 
-出于项目的时间压力，我用一两天写好了足够用的部分。剩下的部分，我在之后花了大约几个星期补充完整。
+Due to the time pressure of the project at that time, I wrote the part that was enough to that time in two days. The rest, it spent me about a few weeks.
 
 <div align="center">  
 <img src="figure/figure_2-en.png"/>   
