@@ -43,11 +43,12 @@ This is a tricky thing! So I checked out the latest technical materials and demo
 
 I went out to eat alone at noon, my brain kept running. I realized that there was a long-standing problem in the Web Layer. It was bad enough to mix Java with HTML and JavaScript. They also made a lot of new special tags and new special tag attributes, such as JSP tags, JSF tags, FreeMarker tags, Thymeleaf tag attributes, Velocity syntax, ..., they give us a bunch of toolboxes and a variety of exotic tools that go out of standard HTML and standard Java specifications. But NO ONE good enough :sweat:.
 
-回头想一下，MVC在Windows MFC、Java Swing、Android，甚至一些基于JavaScript与JSON的Web前端框架，都是一副既干净又能干的样子，为什么到了这里在Web层就成了这副啰嗦麻烦还拖泥带水的样子？这不是个牢骚，而是个技术问题！
+Looking back, MVC is a clean and capable guy in Windows MFC, Java Swing, Android, and even some web front-end frameworks based on JavaScript and JSON. Why is it becoming a troublesome here? This is not a complaint, but a technical issue!
 
-在Java Swing与Android中，把POJO、List、Map这类单纯的数据与诸如ListView、GridView这类单纯的View关联起来的，我们称为Adapter。Adapter处理数据与视图的关联，我们称为适配(Adaptive)。
+In Java Swing and Android, which is used to associate simple data such as POJO, List, and Map with simple Views such as ListView and GridView, we call it Adapter. Using Adapter to handle the association of data with views, we call it Adaptive.
 
-回到Web层，Web层的MVC分别是什么呢？如果可以说Struts的Action、Spring MVC的Controller都是单纯的控制器(Controller)，POJO、Bean、Entity以及它们的容器List、Map都是单纯的模型(Model)，那么，什么才是单纯的视图(View)？
+
+What are the M, V, and C in the Web Layer? If we can say that Struts Action, Spring MVC Controller is "simple Controller" (C), and POJO, Bean, Entity and their container such as List, Map is "simple Model" (M), what is "simple View" (V)?
 
 与Windows MFC、Java Swing、Android这些应用不同，我们讨论的这类Web应用在生产环境下运行的时候，它的View与它的Controller在相距遥远的不同机器上！对浏览器来说，HTML是它的数据或称文档。但是对Web应用来说，HTML就是它希望得到的View。把网页的HTML保存下来然后再用浏览器打开，通常我们仍然可以看到它是之前的样子。
 
