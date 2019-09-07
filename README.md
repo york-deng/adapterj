@@ -47,11 +47,11 @@ Looking back, MVC is a clean and capable guy in Windows MFC, Java Swing, Android
 
 In Java Swing and Android, which is used to associate simple data such as POJO, List, and Map with simple Views such as ListView and GridView, we call it Adapter. Using an Adapter to handle the association of data with views, we call it Adaptive.
 
-What are the M, V, and C in the Web Layer? If we can say that Struts Action, Spring MVC Controller is the "simple Controller" (C), and POJO, Bean, Entity and their container such as List, Map is the "simple Model" (M), what is the "simple View" (V)?
+What are the M, V, and C in the Web Layer? If we can say that Struts Action, Spring MVC Controller is a simple Controller (C), and POJO, Bean, Entity and their container such as List, Map is a simple Model (M), what is a simple View (V)?
 
 Unlike Windows MFC, Java Swing, and Android applications, the web applications we talk about that's running in a production environment, its View is on a different machine than its Controller! For a web browser, HTML is its data or document. But for a web application, HTML is the View it wants to get. Usually, save these HTML codes in a web page into a HTML file, and open this HTML file with a web browser, we can still see what it was like.
 
-当我想到在这类Web应用中，HTML就是单纯的View，那应该怎样来实现一个干净能干的MVC呢？如果已经有一个用作视图模板的HTML，怎样把数据适配到HTML中才会得到类似Java Swing、Android那样的效果呢？为什么现有的模板技术始终有种如鲠在喉的感觉:confounded:？
+When I think, if HTML is a simple View in such a web application, how should we implement a clean and capable MVC framework? If we already have one HTML file that is used as a view, how do we adapt the data into HTML view to get the same effect as Java Swing and Android? Why does the existing web framework always give us a feeling of being in the throat:confounded:？
 
 原因不难想到，```从PHP到JSP、JSF，甚至Thymeleaf，它们都“污染”了标准的HTML，它们各自定义的各种特殊标签与特殊属性，除了用于把数据适配到HTML中，并没有其他的用处！```一个好的技术方案，不应该让人看到这些原本需要隐藏在接口(Interface)下的东西。```标准的HTML、标准的JavaScript、标准的CSS、标准的Java，这些是编程接口，是大家需要知道的语法、标签、属性，这里边不应该包括哪些由应用开发框架定义的语法、标签、属性。```
 
