@@ -53,13 +53,13 @@ Unlike Windows MFC, Java Swing, and Android applications, the web applications w
 
 When I think, if HTML is a simple View in such a web application, how should we implement a clean and capable MVC framework? If we already have one HTML file that is used as a view, how do we adapt the data into HTML view to get the same effect as Java Swing and Android? Why does the existing web framework always give us a feeling of being in the throat:confounded:？
 
-The reason is not hard to think of, ```from PHP to JSP, JSF, and even Thymeleaf, they are "pollution" of standard HTML. The special tags and tag attributes they define, in addition to being used to adapt data into HTML, have no other use! ```A good technical solution, it should not let the developer see what they need to hide under the programming interface. ```Standard HTML, standard JavaScript, standard CSS, standard Java, these are programming interfaces, which are the syntax, tags, and attributes that developers need to know. It should not include the special syntax, tags, and attributes defined by an application framework.```
+The reason is not hard to think of, ```from PHP to JSP, JSF, and even Thymeleaf, they are "polluting" of standard HTML. The special tags and tag attributes they define, in addition to being used to adapt data into HTML, have no other use! ```A good technical solution, it should not let the developer see what they need to hide under the programming interface. ```Standard HTML, standard JavaScript, standard CSS, standard Java, these are programming interfaces, which are the syntax, tags, and attributes that developers need to know. It should not include the special syntax, tags, and attributes defined by an application framework.```
 
-我们不要由应用开发框架定义的语法、标签和属性，也不要把不同的东西混在一起再交给别人。
+We don't want the syntax, tags, and tag attributes defined by an application framework, nor do we mix different things (Such as Java and HTML) and give them to others.
 
-通过在一个Servlet中直接输出HTML，可以得到动态网页。但这通常会需要我们在Servlet中拼接HTML字符串。这是个用HTML“污染”Java的例子。此时此景，另一个角度，既然HTML就是Web应用中单纯的视图，那Servlet就应该是单纯的控制器了。Servlet原本就是控制器，怎么能够把完全属于View的代码，大段大段的放入到Controller当中。
+A dynamic web page can be obtained by outputting HTML directly in a Servlet (or Verticle). But this usually requires us to join these HTML string in the Servlet (or Verticle). This is an example of "polluting" Java with HTML. At this point, at another angle, since HTML is a simple View in a web application, Servlet should be a simple Controller. Servlet is originally a Controller. We can not put a large section of HTML code that belongs to View absolutely into a Controller.
 
-为什么不是Java“污染”了HTML，就是HTML“污染”了Java？要不然就一定要定义一些新的语法、标签或者属性，然后让它们去“污染”HTML与Java。一个应用开发框架引入一些新的语法、标签或者属性，甚至是一件更糟糕的事情，很不幸，JSP竟然全都做到了:smiling_imp:！
+Why aren't they "polluting" HTML in Java, or is it HTML "polluting" in Java? Otherwise, they must define some special syntax, tags, or attributes and then let them "polluting" HTML and Java. An application framework introduces some special syntax, tags, or attributes, and even a worse way. Unfortunately, JSP is all done:smiling_imp:！
 
 在我们讨论的这类Web应用中，HTML与Java，原本就一个属于浏览器端，一个属于服务器端。原本HTML最好就静静的躺在哪里保持它本来的样子，等待被送到浏览器端。只是，如此这般的岁月静好！哪我们需要的动态网页呢？
 
