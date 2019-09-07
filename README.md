@@ -55,9 +55,6 @@ When I think, if HTML is a simple View in such a web application, how should we 
 
 The reason is not hard to think of, ```from PHP to JSP, JSF, and even Thymeleaf, they are "pollution" of standard HTML. The various special tags and special tag attributes they define, in addition to being used to adapt data into HTML, have no other use! ```A good technical solution, it should not let the developer see what they need to hide under the programming interface. ```Standard HTML, standard JavaScript, standard CSS, standard Java, these are programming interfaces, which are the syntax, tags, and attributes that developers need to know. It should not include the special syntax, tags, and attributes defined by an application framework.```
 
-
-原因不难想到，```从PHP到JSP、JSF，甚至Thymeleaf，它们都“污染”了标准的HTML，它们各自定义的各种特殊标签与特殊属性，除了用于把数据适配到HTML中，并没有其他的用处！```一个好的技术方案，不应该让人看到这些原本需要隐藏在接口(Interface)下的东西。```标准的HTML、标准的JavaScript、标准的CSS、标准的Java，这些是编程接口，是大家需要知道的语法、标签、属性，这里边不应该包括哪些由应用开发框架定义的语法、标签、属性。```
-
 我们不要由应用开发框架定义的语法、标签和属性，也不要把不同的东西混在一起再交给别人。
 
 通过在一个Servlet中直接输出HTML，可以得到动态网页。但这通常会需要我们在Servlet中拼接HTML字符串。这是个用HTML“污染”Java的例子。此时此景，另一个角度，既然HTML就是Web应用中单纯的视图，那Servlet就应该是单纯的控制器了。Servlet原本就是控制器，怎么能够把完全属于View的代码，大段大段的放入到Controller当中。
