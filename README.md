@@ -65,15 +65,17 @@ In such web applications we discussed, HTML and Java, originally one belonged to
 
 Don't worry, ...
 
-另一个问题，为什么很多基于JavaScript与JSON的Web前端应用，反而还可以是一副既干净又能干的样子？这种应用架构下服务端只需要负责提供数据，数据与视图的适配或者称为绑定由JavaScript来完成。JavaScript可以方便的访问HTML的DOM结构，因此JavaScript完全可以做到。至于是否做得够好，则由前端应用开发框架的设计者与开发者决定。
+Another question, why are so many web front-end frameworks based on JavaScript and JSON that can be both clean and capable? In this web application architecture, the server only needs to be responsible for providing data, and JavaScript should adapt (or bind) the data into the HTML view. JavaScript can easily access the DOM structure of HTML, so JavaScript can do it very well. As for whether JavaScript is doing well enough, it mostly depends on the designers and developers of these web front-end frameworks.
 
-既然JavaScript能够访问HTML的DOM结构，因此有能力在数据绑定这件事上干得挺不错。为什么不让Java也通过访问HTML的DOM结构来完成数据绑定呢？
+Since JavaScript has access to the DOM structure of HTML, it has the ability to do a good job with data binding. Why not let Java handle data binding by accessing the DOM structure of HTML?
 
-这样的话，Java代码就可以通过getElementById找到那些需要写入数据的HTML标签。如果把这些HTML标签的id值写成object.property的形式，例如order.amount、product.name、product.price等等，那通过命名的约定我们就已经建立起了POJO、Bean、Entity们与HTML标签们的对应关系了！
+In this case, Java can find these HTML tags (to bind data) through getElementById() method.
 
-这是个不错的想法，或许性能有点问题，但直觉上这是可以解决的。
+If the id value of these HTML tags is written as "object.property" format, such as "order.amount", "product.name", "product.price", etc., by these name mapping, we have already established the association between POJO instance and HTML tags!
 
-除了通过Java访问HTML的DOM结构，还可以把HTML、数据与JavaScript代码一并输出到浏览器端，在body的onload事件触发时，由JavaScript完成数据绑定，更新网页的显示结果。这是一种可以改善性能的方式，缺点是用JavaScript输出数据对搜索引擎不友好，只适用于某些应用场景。
+This is a good idea, maybe performance is a bit problematic, but intuitively this can be solved.
+
+In addition to accessing the HTML DOM structure through Java, we can also output HTML, data and JavaScript code to the browser at one time. When the onload event of the BODY tag is triggered, the data binding should be completed by JavaScript, and the display result of the web page should be updated. This is a way to improve performance. The disadvantage is that using JavaScript to output data is not friendly to search engines, it can only be applied to certain application scenarios.
 
 另一个改善性能的方式，与JSP改善性能的方式思路类似。基于不同的HTML模板动态生成不同的被称为视图加速器(ViewAccelerator)的Java类，在这些视图加速器中完成数据与HTML字符串的拼接。预计这种方式可望获得的性能，应该能够接近在Servlet或Verticle中拼接并输出HTML字符串的性能。JSP的性能优化方式，应用服务器在运行时把JSP动态编译成一个Servlet的过程对应用开发人员来说可以是完全不可见的，同样动态生成视图加速器的过程对应用开发人员也可以是完全不可见的。
 
