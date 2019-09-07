@@ -6,7 +6,7 @@
 AdapterJ is a real WYSIWYG (what you see is what you get), java-based, high-performance Web Layer framework. Its design goals are: 
 
 * Separate HTML and Java completely. 
-* Do NOT introduce any syntax, tags or attributes other than standard HTML and standard Java. 
+* Do NOT introduce any special syntax, tags, tag attributes other than standard HTML and standard Java. 
 * High performance. 
 
 <div align="center">  
