@@ -3,7 +3,7 @@
 
 ## A Brief Explanation   
 
-AdapterJ is a real WYSIWYG (what you see is what you get), java-based, high-performance Web Layer framework. Its design goals are as follows: 
+AdapterJ is a real WYSIWYG (what you see is what you get), high-performance, java-based Web Layer framework. Its design goals are as follows: 
 
 * Completely separate HTML and Java. 
 * Do NOT introduce any special syntax, tags, tag attributes other than standard HTML and standard Java. 
