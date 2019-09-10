@@ -2,11 +2,37 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.adapterj</groupId>
     <artifactId>adapterj</artifactId>
+    <packaging>jar</packaging>
     <version>1.0.0</version>
+
+    <name>adapterj</name>
+    <url>http://www.adapterj.com</url>
+    <description>A real WYSIWYG (what you see is what you get), high-performance, java-based Web Layer framework (Web Template Engine) has NO any special syntax, tags, attributes other than standard HTML and standard Java. </description>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>York/GuangYu DENG</name>
+            <email>york.deng@qq.com</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>scm:git:git@github.com:york-deng/adapterj.git</url>
+        <connection>scm:git:git@github.com:york-deng/adapterj.git</connection>
+        <developerConnection>scm:git:git@github.com:york-deng/adapterj.git</developerConnection>
+    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
