@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2019 York/GuangYu Deng (york.deng@qq.com).
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.adapterj.widget;
 
 import java.util.LinkedHashMap;
@@ -20,25 +35,28 @@ public abstract class AbstractSelectOptions implements SelectOptions {
 	protected String _selected = null;
 
 	/**
+	 * Sets a help info into this select-options as an option item
 	 * 
-	 * @param help
+	 * @param help the help info will show in this select-options
 	 */
 	public void setHelp(String help) {
 		_help = help;
 	}
 
 	/**
+	 * Sets a placeholder for empty value
 	 * 
-	 * @param placeholder
+	 * @param placeholder the placeholder
 	 */
 	public void setPlaceholderForEmpty(final String placeholder) {
 		_placeholderForEmpty = placeholder;
 	}
 	
 	/**
+	 * Puts a pair of value and text into this select-options as an option item
 	 * 
-	 * @param value
-	 * @param text
+	 * @param value the int value
+	 * @param text the text will show in this select-options
 	 */
 	public void put(int value, String text) {
 		if (text == null || text.isEmpty()) {
@@ -48,9 +66,10 @@ public abstract class AbstractSelectOptions implements SelectOptions {
 	}
 	
 	/**
+	 * Puts a pair of value and text into this select-options as an option item
 	 * 
-	 * @param value
-	 * @param text
+	 * @param value the value
+	 * @param text the text will show in this select-options
 	 */
 	public void put(String value, String text) {
 		if (value == null || value.isEmpty()) {
@@ -63,10 +82,11 @@ public abstract class AbstractSelectOptions implements SelectOptions {
 	}
 	
 	/**
+	 * Puts a pair of value and text into this select-options as the selected option item
 	 * 
-	 * @param value
-	 * @param text
-	 * @param selected
+	 * @param value the int value
+	 * @param text the text will show in this select-options
+	 * @param selected whether this option item will be selected or not
 	 */
 	public void put(int value, String text, int selected) {
 		if (text == null || text.isEmpty()) {
@@ -77,10 +97,11 @@ public abstract class AbstractSelectOptions implements SelectOptions {
 	}
 	
 	/**
+	 * Puts a pair of value and text into this select-options as the selected option item
 	 * 
-	 * @param value
-	 * @param text
-	 * @param selected
+	 * @param value the value
+	 * @param text the text will show in this select-options
+	 * @param selected whether this option item will be selected or not
 	 */
 	public void put(String value, String text, String selected) {
 		if (value == null || value.isEmpty()) {

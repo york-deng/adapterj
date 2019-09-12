@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2019 York/GuangYu Deng (york.deng@qq.com).
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.adapterj.widget;
 
 import java.util.Collection;
@@ -6,10 +21,6 @@ import java.util.Iterator;
 import com.adapterj.annotation.List;
 import com.adapterj.util.DataSet;
 
-/**
- * 
- * @author York/GuangYu DENG
- */
 @List(classId = "_list", entryId = "entry", indexId = "i")
 public abstract class AbstractListAdapter<T> implements ListAdapter<T>, DataSet<T> {
 
@@ -17,7 +28,7 @@ public abstract class AbstractListAdapter<T> implements ListAdapter<T>, DataSet<
 
 	protected final java.util.List<T> _list = new java.util.ArrayList<T>();
 
-	protected final java.util.List<LinkGroup> _linksList = new java.util.ArrayList<LinkGroup>();
+	protected final java.util.List<AnchorGroup> _anchorsList = new java.util.ArrayList<AnchorGroup>();
 
 	protected final java.util.List<TextGroup> _textsList = new java.util.ArrayList<TextGroup>();
 	
@@ -26,52 +37,58 @@ public abstract class AbstractListAdapter<T> implements ListAdapter<T>, DataSet<
 	protected String _placeholderForEmpty = ("");
 	
 	/**
+	 * Add an anchor group for this adapter
 	 * 
-	 * @param links
-	 * @return
+	 * @param anchors the anchor group
+	 * @return true if success
 	 */
-    public boolean addLinkGroup(LinkGroup links) {
-        return _linksList.add(links);
+    public boolean addAnchorGroup(AnchorGroup anchors) {
+        return _anchorsList.add(anchors);
     }
 
     /**
+     * Add an anchor group for this adapter
      * 
-     * @param position
-     * @param links
+     * @param position the position
+     * @param anchors the anchor group
      */
-    public void addLinkGroup(int position, LinkGroup links) {
-    	_linksList.add(position, links);
+    public void addAnchorGroup(int position, AnchorGroup anchors) {
+    	_anchorsList.add(position, anchors);
     }
 	
 	/**
+	 * Add a text group for this adapter
 	 * 
-	 * @param texts
-	 * @return
+	 * @param texts the text group
+	 * @return true if success
 	 */
     public boolean addTextGroup(TextGroup texts) {
         return _textsList.add(texts);
     }
 
     /**
+     * Add a text group for this adapter
      * 
-     * @param position
-     * @param texts
+     * @param position the position
+     * @param texts the text group
      */
     public void addTextGroup(int position, TextGroup texts) {
     	_textsList.add(position, texts);
     }
 
 	/**
+	 * Sets a placeholder for null value
 	 * 
-	 * @param placeholder
+	 * @param placeholder the placeholder
 	 */
 	public void setPlaceholderForNull(final String placeholder) {
 		_placeholderForNull = placeholder;
 	}
 
 	/**
+	 * Sets a placeholder for empty value
 	 * 
-	 * @param placeholder
+	 * @param placeholder the placeholder
 	 */
 	public void setPlaceholderForEmpty(final String placeholder) {
 		_placeholderForEmpty = placeholder;
@@ -164,13 +181,13 @@ public abstract class AbstractListAdapter<T> implements ListAdapter<T>, DataSet<
 	// ListAdapter methods
     
 	@Override
-	public LinkGroup getLinkGroup(int position) {
-		return _linksList.get(position);
+	public AnchorGroup getAnchorGroup(int position) {
+		return _anchorsList.get(position);
 	}
 	
 	@Override
-	public java.util.List<LinkGroup> getAllLinkGroup() {
-		return _linksList;
+	public java.util.List<AnchorGroup> getAllAnchorGroup() {
+		return _anchorsList;
 	}
     
 	@Override

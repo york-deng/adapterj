@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2019 York/GuangYu Deng (york.deng@qq.com).
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.adapterj.widget;
 
 import java.util.Set;
@@ -18,7 +33,7 @@ public abstract class AbstractMapAdapter implements MapAdapter {
 
 	protected final java.util.Map<String, SelectOptions> _options = new HashMap<String, SelectOptions>();
 	
-	protected final java.util.Map<String, Link> _links = new HashMap<String, Link>();
+	protected final java.util.Map<String, Anchor> _anchors = new HashMap<String, Anchor>();
 	
 	protected final java.util.Map<String, Text> _texts = new HashMap<String, Text>();
 	
@@ -27,35 +42,39 @@ public abstract class AbstractMapAdapter implements MapAdapter {
 	protected String _placeholder = ("");
 	
 	/**
+	 * Sets a value for this adapter
 	 * 
-	 * @param id
-	 * @param value
+	 * @param id the value/element id
+	 * @param value the value instance
 	 */
 	public void setValue(final String id, final Object value) {
 		_map.put(id, value);
 	}
 	
 	/**
+	 * Sets an anchor for this adapter
 	 * 
-	 * @param id
-	 * @param link
+	 * @param id the anchor/element id
+	 * @param anchor the anchor instance
 	 */
-	public void setLink(final String id, final Link link) {
-		_links.put(id, link);
+	public void setAnchor(final String id, final Anchor anchor) {
+		_anchors.put(id, anchor);
 	}
 	
 	/**
+	 * Sets a form action for this adapter
 	 * 
-	 * @param id
-	 * @param formAction
+	 * @param id the form element id.
+	 * @param formAction the form action.
 	 */
 	public void setFormAction(final String id, final String formAction) {
 		_forms.put(id, formAction);
 	}
 
 	/**
+	 * Sets a placeholder for null value
 	 * 
-	 * @param placeholder
+	 * @param placeholder the placeholder
 	 */
 	public void setPlaceholderForNull(final String placeholder) {
 		_placeholder = placeholder;
@@ -84,13 +103,13 @@ public abstract class AbstractMapAdapter implements MapAdapter {
 	}
 	
 	@Override
-	public Set<String> idSetOfLink() {
-		return _links.keySet();
+	public Set<String> idSetOfAnchor() {
+		return _anchors.keySet();
 	}
 	
 	@Override
-	public Link getLink(final String id) {
-		return _links.get(id);
+	public Anchor getAnchor(final String id) {
+		return _anchors.get(id);
 	}
 	
 	@Override

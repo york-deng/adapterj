@@ -21,39 +21,58 @@ import com.adapterj.annotation.ID;
 import com.adapterj.annotation.GetMethod;
 import com.adapterj.annotation.SetMethod;
 
-/**
- * 
- * @author York/GuangYu DENG
- */
-@ID(identity = "text")
-public class Text implements Serializable {
-	
-	private static final long serialVersionUID = 3273138306522898784L;
+@ID(identity = "anchor")
+public class Anchor implements Serializable {
+
+	private static final long serialVersionUID = -5853177696868526137L;
 
 	/**
-	 * Constructs a HTML text node with the given text value.
+	 * Constructs a HTML anchor tag/element with the given url
 	 * 
-	 * @param text the given text value.
+	 * @param url the given url
 	 */
-	public Text(final String text) {
+	public Anchor(final String url) {
+		this.url = url;
+	}
+
+	/**
+	 * Constructs a HTML anchor tag/element with the given url and text
+	 * 
+	 * @param url the given url
+	 * @param text the given text
+	 */
+	public Anchor(final String url, final String text) {
+		this.url  = url;
 		this.text = text;
 	}
 	
+	private String url;
+	
+	@GetMethod(methodName = "getURL", returnType = "String", returnId = "url")
+	public String getURL() {
+		return url;
+	}
+
+	@SetMethod(methodName = "setURL", parameterType = "String", parameterId = "url")
+	public void setURL(String url) {
+		this.url = url;
+	}
+
 	private String text;
 	
 	@GetMethod(methodName = "getText", returnType = "String", returnId = "text")
 	public String getText() {
 		return text;
 	}
-
 	@SetMethod(methodName = "setText", parameterType = "String", parameterId = "text")
 	public void setText(String text) {
 		this.text = text;
 	}
-
+	
 	public String toJSONString() {
 		final StringBuffer s = new StringBuffer();
 		s.append('{');
+		s.append("\"url\":\"").append(url).append("\", ");
 		s.append("\"text\":\"").append(text).append("\"");
 		s.append('}');
 		return s.toString();

@@ -19,12 +19,15 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * Utilities for encoding and decoding the MD5 representation of string data.
+ */
 public class MD5 {
 
     /**
-     * 
-     * @param text
-     * @return
+     * MD5-encode the given data and return a newly string with the result.
+     * @param text the input String to decode, which is converted to MD5 string using the default charset
+     * @return the MD5-encoded data
      */
     public static String encode(final String text) {
         try {
@@ -36,10 +39,10 @@ public class MD5 {
     }
 
     /**
-     * 
-     * @param text
-     * @param charset
-     * @return
+     * MD5-encode the given data and return a newly string with the result.
+     * @param text the input String to decode, which is converted to MD5 string using the given charset
+     * @param charset the given charset
+     * @return the MD5-encoded data
      */
     public static String encode(final String text, final String charset) {
         try {

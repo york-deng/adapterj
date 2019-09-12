@@ -5,7 +5,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.adapterj</groupId>
+    <groupId>com.github.york-deng</groupId>
     <artifactId>adapterj</artifactId>
     <packaging>jar</packaging>
     <version>1.0.0</version>
@@ -34,6 +34,21 @@
         <developerConnection>scm:git:git@github.com:york-deng/adapterj.git</developerConnection>
     </scm>
 
+    <!-- snapshotRepository与repository中的id一定要与setting.xml中server的id保持一致 -->
+    <distributionManagement>
+        <snapshotRepository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        
+        <repository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
+    </distributionManagement>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -44,12 +59,77 @@
         <plugins>
             <!-- We specify the Maven compiler plugin as we need to set it to Java 1.8 -->
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+	                <excludes>
+	                    <exclude>**/AdapterJObjectInputStream.java</exclude>
+	                    <exclude>**/AdapterJClassLoader.java</exclude>
+	                    <exclude>**/test/widget/*.java</exclude>
+	                </excludes>
                 </configuration>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <attach>true</attach>
+	                <sourceFileExcludes>
+		                <sourceFileExclude>**/AdapterJObjectInputStream.java</sourceFileExclude>
+		                <sourceFileExclude>**/AdapterJClassLoader.java</sourceFileExclude>
+		                <sourceFileExclude>**/test/widget/*.java</sourceFileExclude>
+	                </sourceFileExcludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+	                <sourceFileExcludes>
+		                <sourceFileExclude>**/AdapterJObjectInputStream.java</sourceFileExclude>
+		                <sourceFileExclude>**/AdapterJClassLoader.java</sourceFileExclude>
+		                <sourceFileExclude>**/test/widget/*.java</sourceFileExclude>
+	                </sourceFileExcludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <!-- GPG -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2019 York/GuangYu Deng (york.deng@qq.com).
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.adapterj.registry;
 
 import java.io.File;
@@ -15,8 +30,9 @@ public class RegistryFactory {
 	private static final Map<String, Registry> registries = new ConcurrentHashMap<String, Registry>();
 
 	/**
+	 * Returns a Registry instance loaded registry entries from default properties file.
 	 * 
-	 * @return A Registry instance (default)
+	 * @return a Registry instance loaded registry entries from default properties file.
 	 */
 	public static final Registry getRegistry() throws RegistryException {
 		if (!registries.containsKey(defaultProperties)) {
@@ -35,9 +51,10 @@ public class RegistryFactory {
 	}
 	
 	/**
+	 * Returns a Registry instance loaded registry entries from the given properties file.
 	 * 
-	 * @param file - The Registry properties file 
-	 * @return A Registry instance 
+	 * @param file the path of given Registry properties file.
+	 * @return a Registry instance loaded registry entries from the given properties file.
 	 */
 	public static final Registry getRegistry(final String file) throws RegistryException {
 		if (!registries.containsKey(file)) {
@@ -56,9 +73,10 @@ public class RegistryFactory {
 	}
 	
 	/**
+	 * Returns a Registry instance loaded registry entries from the given properties file.
 	 * 
-	 * @param file - The Registry properties file 
-	 * @return A Registry instance 
+	 * @param file the given Registry properties file.
+	 * @return a Registry instance loaded registry entries from the given properties file.
 	 */
 	public static final Registry getRegistry(final File file) throws RegistryException {
 		final String path = file.getAbsolutePath();

@@ -16,14 +16,28 @@ public class SimpleDataSet<E> implements DataSet<E>, Serializable {
 	
 	private List<E> _list;
 
+	/**
+	 * Constructs an empty dataset with an initial capacity of ten.
+	 */
     public SimpleDataSet() {
         _list = new ArrayList<E>();
     }
 
+    /**
+     * Constructs a dataset containing the elements of the specified list, in the order they are returned by the 
+     * collection's iterator.
+     * 
+     * @param list the specified list
+     */
     public SimpleDataSet(List<E> list) {
         _list = list;
     }
 
+    /**
+     * Returns a list containing all of the elements in this dataset in proper sequence.
+     * 
+     * @return a list containing all of the elements in this dataset in proper sequence.
+     */
     public List<E> toList() {
     	return _list;
     }
@@ -37,7 +51,7 @@ public class SimpleDataSet<E> implements DataSet<E>, Serializable {
 
     @Override
     public void addItem(int p, E e) {
-        _list.add(p, e);
+    	_list.add(p, e);
     }
 
     @Override

@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2019 York/GuangYu Deng (york.deng@qq.com).
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.adapterj.ext.vertx;
 
 import java.lang.reflect.InvocationTargetException;
@@ -19,35 +34,31 @@ import com.adapterj.serverside.ServerSideException;
 import com.adapterj.logging.Debugger;
 import com.adapterj.logging.Log;
 
-/**
- * 
- * @author York/GuangYu DENG
- */
 @SuppressWarnings("rawtypes")
 public class SimpleHttpParametersResolver<T> implements HttpParametersResolver<T> {
 	
 	private static final boolean DEBUG = !Debugger.DEBUG;
-	
     private static final String TAG = SimpleHttpParametersResolver.class.getName();
 
     protected static final String charset = "utf-8";
-
     protected Registry _registry;
-
     protected String _charset;
     
 	/**
-	 * Basic Constructor.
-	 */
+	 * Constructs a SimpleHttpParametersResolver instance with the given registry.
+     * 
+     * @param registry the given registry.
+     */
 	public SimpleHttpParametersResolver(final Registry registry) {
 		_registry = registry;
 		_charset = charset;
 	}
 	
 	/**
+	 * Returns true if the given parameter name is NOT an object.attribute format.
 	 * 
-	 * @param pName
-	 * @return
+	 * @param pName the given parameter name.
+	 * @return true if the given parameter name is NOT an object.attribute format.
 	 */
 	protected final boolean isPlaintextParameter(final String pName) {
 		final int p1 = pName.indexOf('.');
@@ -55,9 +66,10 @@ public class SimpleHttpParametersResolver<T> implements HttpParametersResolver<T
 	}
 	
 	/**
+	 * Returns the POJO instance id from the given parameter name, such as: product, order, product[0], order[1], ...
 	 * 
-	 * @param pName - Such as: product.name, order.price, product[0].name, order[1].price, ... 
-	 * @return
+	 * @param pName the given parameter name, such as: product.name, order.price, product[0].name, order[1].price, ... 
+	 * @return the POJO instance id from the given parameter name.
 	 */
 	protected final String getInstanceIdFromParameterName(final String pName) {
 		String instanceId = null;
@@ -72,9 +84,10 @@ public class SimpleHttpParametersResolver<T> implements HttpParametersResolver<T
 	}
 
 	/**
+	 * Returns the POJO class id from the given parameter name, such as: product, order, ...
 	 * 
-	 * @param pName - Such as: product.name, order.price, product[0].name, order[1].price, ... 
-	 * @return
+	 * @param pName the given parameter name, such as: product.name, order.price, product[0].name, order[1].price, ... 
+	 * @return the POJO class id from the given parameter name.
 	 */
 	protected final String getClassIdFromParameterName(final String pName) {
 		String classId = null;
@@ -92,9 +105,10 @@ public class SimpleHttpParametersResolver<T> implements HttpParametersResolver<T
 	}
 
 	/**
+	 * Returns the POJO class id from the given instance id, such as: product, order, ...
 	 * 
-	 * @param instanceId - Such as: product, order, product[0], order[1], ... 
-	 * @return
+	 * @param instanceId the given instance id, such as: product, order, product[0], order[1], ... 
+	 * @return the POJO class id from the given parameter name.
 	 */
 	public final String getClassIdFromInstanceId(final String instanceId) {
 		String classId = null;
@@ -109,9 +123,10 @@ public class SimpleHttpParametersResolver<T> implements HttpParametersResolver<T
 	}
 
 	/**
+	 * Returns the POJO attribute id from the given parameter name, such as: price, name, ...
 	 * 
-	 * @param pName - Such as: product.name, order.price, product[0].name, order[1].price, ... 
-	 * @return
+	 * @param pName the given parameter name, such as: product.name, order.price, product[0].name, order[1].price, ... 
+	 * @return the POJO attribute id from the given parameter name.
 	 */
 	protected final String getAttributeIdFromParameterName(final String pName) {
 		String attributeId = null;

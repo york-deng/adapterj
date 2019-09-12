@@ -41,8 +41,8 @@ import com.adapterj.widget.AbstractView;
 import com.adapterj.widget.Adapter;
 import com.adapterj.widget.BindException;
 import com.adapterj.widget.Javable;
-import com.adapterj.widget.Link;
-import com.adapterj.widget.LinkGroup;
+import com.adapterj.widget.Anchor;
+import com.adapterj.widget.AnchorGroup;
 import com.adapterj.widget.ListAdapter;
 import com.adapterj.widget.NotStandardizedHTMLException;
 import com.adapterj.widget.SelectOptions;
@@ -712,9 +712,9 @@ public class SimpleHTMLView6 extends AbstractView implements Javable, Formattabl
 							} // if (method.isAnnotationPresent(GetMethod.class)) 
 						} // end for (final Method method : methods)
 						
-						final java.util.List<LinkGroup> allLinks = adapter.getAllLinkGroup();
+						final java.util.List<AnchorGroup> allLinks = adapter.getAllAnchorGroup();
 						if (allLinks != null && !allLinks.isEmpty()) {
-							final ID linkID = (ID) Link.class.getAnnotation(ID.class);
+							final ID linkID = (ID) Anchor.class.getAnnotation(ID.class);
 							final String linkId = linkID.identity();
 							
 							s.delete(0, s.length());
@@ -723,9 +723,9 @@ public class SimpleHTMLView6 extends AbstractView implements Javable, Formattabl
 							s.append(indexIj); // Such as: "[j]"
 							final String linkIj = s.toString();
 							
-							final LinkGroup links = allLinks.get(0);
+							final AnchorGroup links = allLinks.get(0);
 							if (links != null) {
-								final Method[] mthds = Link.class.getMethods();
+								final Method[] mthds = Anchor.class.getMethods();
 								for (int k = 0; k < links.length(); k ++) {
 									for (final Method mthd : mthds) {
 										if (mthd.isAnnotationPresent(GetMethod.class)) {
@@ -1002,9 +1002,9 @@ public class SimpleHTMLView6 extends AbstractView implements Javable, Formattabl
 							} // if (method.isAnnotationPresent(GetMethod.class)) 
 						} // end for (final Method method : methods)
 						
-						final LinkGroup links = adapter.getLinkGroup();
+						final AnchorGroup links = adapter.getAnchorGroup();
 						if (links != null && links.length() > 0) {
-							final ID linkID = (ID) Link.class.getAnnotation(ID.class);
+							final ID linkID = (ID) Anchor.class.getAnnotation(ID.class);
 							final String linkId = linkID.identity();
 							
 							s.delete(0, s.length());
@@ -1012,7 +1012,7 @@ public class SimpleHTMLView6 extends AbstractView implements Javable, Formattabl
 							if (array != null && !array.isEmpty()) s.append(array); // Such as: "[0]", "[1]"
 							final String linkIj = s.toString();
 							
-							final Method[] mthds = Link.class.getMethods();
+							final Method[] mthds = Anchor.class.getMethods();
 							for (int k = 0; k < links.length(); k ++) {
 								for (final Method mthd : mthds) {
 									if (mthd.isAnnotationPresent(GetMethod.class)) {
@@ -1276,9 +1276,9 @@ public class SimpleHTMLView6 extends AbstractView implements Javable, Formattabl
 							} // if (method.isAnnotationPresent(GetMethod.class)) 
 						} // end for (final Method method : methods)
 						
-						final LinkGroup links = adapter.getLinkGroup();
+						final AnchorGroup links = adapter.getAnchorGroup();
 						if (links != null && links.length() > 0) {
-							final ID linkID = (ID) Link.class.getAnnotation(ID.class);
+							final ID linkID = (ID) Anchor.class.getAnnotation(ID.class);
 							final String linkId = linkID.identity();
 							
 							s.delete(0, s.length());
@@ -1286,7 +1286,7 @@ public class SimpleHTMLView6 extends AbstractView implements Javable, Formattabl
 							if (array != null && !array.isEmpty()) s.append(array); // Such as: "[0]", "[1]"
 							final String linkIj = s.toString();
 							
-							final Method[] mthds = Link.class.getMethods();
+							final Method[] mthds = Anchor.class.getMethods();
 							for (int k = 0; k < links.length(); k ++) {
 								for (final Method mthd : mthds) {
 									if (mthd.isAnnotationPresent(GetMethod.class)) {
@@ -1502,13 +1502,13 @@ public class SimpleHTMLView6 extends AbstractView implements Javable, Formattabl
 						java.put(elementId, assignment);
 					} // end while (iter1.hasNext())
 					
-					final Set<String> idSetOfLink = adapter.idSetOfLink();
+					final Set<String> idSetOfLink = adapter.idSetOfAnchor();
 					final Iterator<String> iter2 = idSetOfLink.iterator();
 					while (iter2.hasNext()) {
 						final String elementId = iter2.next();
-						final Link link = adapter.getLink(elementId);
+						final Anchor link = adapter.getAnchor(elementId);
 						if (link != null) {
-							final Method[] mthds = Link.class.getMethods();
+							final Method[] mthds = Anchor.class.getMethods();
 							for (final Method mthd : mthds) {
 								if (mthd.isAnnotationPresent(GetMethod.class)) {
 									final GetMethod getMethod = mthd.getAnnotation(GetMethod.class);
@@ -2038,5 +2038,35 @@ public class SimpleHTMLView6 extends AbstractView implements Javable, Formattabl
 	@Override
 	public void setFormatter(final Formatter formatter) {
 		_formatter = formatter;
+	}
+
+	@Override
+	public void addMeta(String charset) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addMeta(String name, String content) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addMeta(int httpEquiv, String content) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addExternalScript(String type, String uri) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addExternalScript(String type, String uri, boolean async, String defer) {
+		// TODO Auto-generated method stub
+		
 	}
 }

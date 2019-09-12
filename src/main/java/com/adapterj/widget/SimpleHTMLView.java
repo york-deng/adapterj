@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2019 York/GuangYu Deng (york.deng@qq.com).
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.adapterj.widget;
 
 import java.io.File;
@@ -34,37 +49,31 @@ import com.adapterj.algo.MD5;
 import com.adapterj.annotation.GetMethod;
 import com.adapterj.annotation.ID;
 import com.adapterj.annotation.List;
+import com.adapterj.html.Attributes;
 import com.adapterj.test.Testable;
 import com.adapterj.text.Formattable;
 import com.adapterj.text.Formatter;
 import com.adapterj.logging.Debugger;
 import com.adapterj.logging.Log;
 
-/**
- * BASED OBJECT-LIST MODEL: 
- * 生成基于 Object 与 List<Object> 的动态方法，不需要在 ClassLoader 之间复制数据。
- * 
- * 目前只支持一个 elementId 仅处理第一个被找到的 element tag。
- * 如果不考虑 HTML 规范中强调 id 的唯一性，通常认为 elementId 完全相同的 element tag 应该绑定同样的值。
- * 
- * 加速器:
- * 1. 基于 HTML 模板，动态生成一个 toHTMLString 方法，以 StringBuffer 方式输出 HTML string。 
- * 2. 每个模板文件对应一个特定的 SimpleHTMLViewAccelerator 子类，模板文件名 与 类名的 对应关系放入 view.properties 中。
- * 3. 动态修改模板对应的 SimpleHTMLViewAccelerator 子类，或者动态创建一个新的类作为加速器。
- * 4. 如果 SimpleHTMLViewAccelerator 子类 存在 且不需要更新，则 直接 调用其 toHTMLString() 方法。
- * 
- * 关于加速器的更新:
- * 1. 目前，加速器没有更新到磁盘，仅保存到内存。当 Tomcat 重新启动，或者 项目被 Reload 时，会重新生成加速器。
- *    否者，会继续使用已经保存到 AdapterJClassLoader 内存中 的 加速器。
- *    这样已经提供了加速器生命周期的管理机制。
- *    当 HTML 模板更新之后，只需要在 Tomcat 管理界面中 Reload 项目，则可以重新生成加速器。
- * 2. 如果要提供更进一步的加速器生命周期管理机制，可以根据 模板文件 的 md5 或者 hash，
- *    以及 SimpleHTMLViewAccelerator 子类的 md5 或者 hash，检查 SimpleHTMLViewAccelerator 子类 是否需要更新？
- *    这或许需要一个 Properties 文件用于存储 映射关系，如果映射关系 与 实际计算值 一致，则说明不需要更新。
- *    为了确保性能，模板文件的 md5 或 hash，以及 class 的 md5 或 hash，可以在 Servlet 初始化的时候计算。
- * 
- * @author York/GuangYu DENG
- */
+// 目前只支持一个 elementId 仅处理第一个被找到的 element tag。
+// 如果不考虑 HTML 规范中强调 id 的唯一性，通常认为 elementId 完全相同的 element tag 应该绑定同样的值。
+// 加速器:
+// 1. 基于 HTML 模板，动态生成一个 toHTMLString 方法，以 StringBuffer 方式输出 HTML string。 
+// 2. 每个模板文件对应一个特定的 SimpleHTMLViewAccelerator 子类，模板文件名 与 类名的 对应关系放入 view.properties 中。
+// 3. 动态修改模板对应的 SimpleHTMLViewAccelerator 子类，或者动态创建一个新的类作为加速器。
+// 4. 如果 SimpleHTMLViewAccelerator 子类 存在 且不需要更新，则 直接 调用其 toHTMLString() 方法。
+// 
+// 关于加速器的更新:
+// 1. 目前，加速器没有更新到磁盘，仅保存到内存。当 Tomcat 重新启动，或者 项目被 Reload 时，会重新生成加速器。
+//    否者，会继续使用已经保存到 AdapterJClassLoader 内存中 的 加速器。
+//    这样已经提供了加速器生命周期的管理机制。
+//    当 HTML 模板更新之后，只需要在 Tomcat 管理界面中 Reload 项目，则可以重新生成加速器。
+// 2. 如果要提供更进一步的加速器生命周期管理机制，可以根据 模板文件 的 md5 或者 hash，
+//    以及 SimpleHTMLViewAccelerator 子类的 md5 或者 hash，检查 SimpleHTMLViewAccelerator 子类 是否需要更新？
+//    这或许需要一个 Properties 文件用于存储 映射关系，如果映射关系 与 实际计算值 一致，则说明不需要更新。
+//    为了确保性能，模板文件的 md5 或 hash，以及 class 的 md5 或 hash，可以在 Servlet 初始化的时候计算。
+
 public class SimpleHTMLView extends AbstractView implements Javable, Formattable {
 
 	private static final long serialVersionUID = 6205756869666618426L;
@@ -74,7 +83,7 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
     private static final String SIMPLE_LIST_VAR_LINE1      = "final String id = \"%s\";";
     private static final String SIMPLE_LIST_VAR_LINE2      = "final com.adapterj.widget.SimpleListAdapter %s = getSimpleListAdapter(id);";
     private static final String SIMPLE_LIST_VAR_LINE3      = "final java.util.List %s = %s.getAllItems();";
-    private static final String SIMPLE_LIST_VAR_LINE4      = "final java.util.List %s = %s.getAllLinkGroup();";
+    private static final String SIMPLE_LIST_VAR_LINE4      = "final java.util.List %s = %s.getAllAnchorGroup();";
     private static final String SIMPLE_LIST_VAR_LINE5      = "final java.util.List %s = %s.getAllTextGroup();";
     private static final String SIMPLE_LIST_FOR_LOOP1      = "<!--<![CDATA[JAVA[ for (int %s = 0; %s < %s.size(); %s ++) { ]]]>-->";
     private static final String SIMPLE_LIST_FOR_LOOP2      = "<!--<![CDATA[JAVA[ } ]]]>-->";
@@ -87,13 +96,13 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
     private static final String SIMPLE_LIST_DATE_VALUE     = "<!--<![CDATA[JAVA[= _formatter.format(((%s) %s.get(%s)).%s(), \"%s\", \"%s\") ]]]>-->";
     private static final String SIMPLE_LIST_OBJECT_VALUE   = "<!--<![CDATA[JAVA[= _formatter.format(((%s) %s.get(%s)).%s()) ]]]>-->";
     private static final String SIMPLE_LIST_OPTION_VALUE   = "<!--<![CDATA[JAVA[= %s.getSelectOptions(\"%s\").selected(String.valueOf(((%s) %s.get(%s)).%s())) ]]]>-->";
-    private static final String SIMPLE_LIST_LINK_VALUE     = "<!--<![CDATA[JAVA[= (((com.adapterj.widget.LinkGroup) %s.get(%s)).link(%d)).%s() ]]]>-->";
+    private static final String SIMPLE_LIST_ANCHOR_VALUE     = "<!--<![CDATA[JAVA[= (((com.adapterj.widget.AnchorGroup) %s.get(%s)).anchor(%d)).%s() ]]]>-->";
     private static final String SIMPLE_LIST_TEXT_VALUE     = "<!--<![CDATA[JAVA[= (((com.adapterj.widget.TextGroup) %s.get(%s)).text(%d)).%s() ]]]>-->";
     
 	private static final String SIMPLE_FORM_VAR_LINE1      = "final String id = \"%s\";";
     private static final String SIMPLE_FORM_VAR_LINE2      = "final com.adapterj.widget.SimpleFormAdapter %s = getSimpleFormAdapter(id);";
     private static final String SIMPLE_FORM_VAR_LINE3      = "final %s %s = (%s) %s.getData();";
-    private static final String SIMPLE_FORM_VAR_LINE4      = "final com.adapterj.widget.LinkGroup %s = %s.getLinkGroup();";
+    private static final String SIMPLE_FORM_VAR_LINE4      = "final com.adapterj.widget.AnchorGroup %s = %s.getAnchorGroup();";
     private static final String SIMPLE_FORM_VAR_LINE5      = "final java.util.List %s = %s.getTextGroup();";
     private static final String SIMPLE_FORM_STRING_VALUE   = "<!--<![CDATA[JAVA[= _formatter.format(%s.%s(), \"\") ]]]>-->";
     private static final String SIMPLE_FORM_BOOLEAN_VALUE  = "<!--<![CDATA[JAVA[= _formatter.format(%s.%s()) ]]]>-->";
@@ -104,13 +113,13 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
     private static final String SIMPLE_FORM_DATE_VALUE     = "<!--<![CDATA[JAVA[= _formatter.format(%s.%s(), \"%s\", \"%s\") ]]]>-->";
     private static final String SIMPLE_FORM_OBJECT_VALUE   = "<!--<![CDATA[JAVA[= _formatter.format(%s.%s()) ]]]>-->";
     private static final String SIMPLE_FORM_OPTION_VALUE   = "<!--<![CDATA[JAVA[= %s.getSelectOptions(\"%s\").selected(String.valueOf(%s.%s()), %%s) ]]]>-->";
-    private static final String SIMPLE_FORM_LINK_VALUE     = "<!--<![CDATA[JAVA[= %s.link(%d).%s() ]]]>-->";
+    private static final String SIMPLE_FORM_ANCHOR_VALUE     = "<!--<![CDATA[JAVA[= %s.anchor(%d).%s() ]]]>-->";
     private static final String SIMPLE_FORM_TEXT_VALUE     = "<!--<![CDATA[JAVA[= %s.text(%d).%s() ]]]>-->";
     
     private static final String SIMPLE_VIEW_VAR_LINE1      = "final String id = \"%s\";";
     private static final String SIMPLE_VIEW_VAR_LINE2      = "final com.adapterj.widget.SimpleViewAdapter %s = getSimpleViewAdapter(id);";
     private static final String SIMPLE_VIEW_VAR_LINE3      = "final %s %s = (%s) %s.getData();";
-    private static final String SIMPLE_VIEW_VAR_LINE4      = "final com.adapterj.widget.LinkGroup %s = %s.getLinkGroup();";
+    private static final String SIMPLE_VIEW_VAR_LINE4      = "final com.adapterj.widget.AnchorGroup %s = %s.getAnchorGroup();";
     private static final String SIMPLE_VIEW_VAR_LINE5      = "final java.util.List %s = %s.getTextGroup();";
     private static final String SIMPLE_VIEW_STRING_VALUE   = "<!--<![CDATA[JAVA[= _formatter.format(%s.%s()) ]]]>-->";
     private static final String SIMPLE_VIEW_BOOLEAN_VALUE  = "<!--<![CDATA[JAVA[= _formatter.format(%s.%s()) ]]]>-->";
@@ -121,7 +130,7 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
     private static final String SIMPLE_VIEW_DATE_VALUE     = "<!--<![CDATA[JAVA[= _formatter.format(%s.%s(), \"%s\", \"%s\") ]]]>-->";
     private static final String SIMPLE_VIEW_OBJECT_VALUE   = "<!--<![CDATA[JAVA[= _formatter.format(%s.%s()) ]]]>-->";
     private static final String SIMPLE_VIEW_OPTION_VALUE   = "<!--<![CDATA[JAVA[= %s.getSelectOptions(\"%s\").selected(String.valueOf(%s.%s())) ]]]>-->";
-    private static final String SIMPLE_VIEW_LINK_VALUE     = "<!--<![CDATA[JAVA[= %s.link(%d).%s() ]]]>-->";
+    private static final String SIMPLE_VIEW_ANCHOR_VALUE     = "<!--<![CDATA[JAVA[= %s.anchor(%d).%s() ]]]>-->";
     private static final String SIMPLE_VIEW_TEXT_VALUE     = "<!--<![CDATA[JAVA[= %s.text(%d).%s() ]]]>-->";
     
 	private static final String SIMPLE_MAP_VAR_LINE1       = "final String id = \"%s\";";
@@ -135,12 +144,13 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
     private static final String SIMPLE_MAP_DATE_VALUE      = "<!--<![CDATA[JAVA[= _formatter.format((java.util.Date) %s.getValue(\"%s\")) ]]]>-->";
     private static final String SIMPLE_MAP_OBJECT_VALUE    = "<!--<![CDATA[JAVA[= _formatter.format(%s.getValue(\"%s\")) ]]]>-->";
     private static final String SIMPLE_MAP_OPTION_VALUE    = "<!--<![CDATA[JAVA[= %s.getSelectOptions(\"%s\").selected(String.valueOf(%s.%s()), %%s) ]]]>-->";
-    private static final String SIMPLE_MAP_LINK_VALUE      = "<!--<![CDATA[JAVA[= %s.getLink(%s).%s() ]]]>-->";
+    private static final String SIMPLE_MAP_ANCHOR_VALUE      = "<!--<![CDATA[JAVA[= %s.getAnchor(%s).%s() ]]]>-->";
     private static final String SIMPLE_MAP_TEXT_VALUE      = "<!--<![CDATA[JAVA[= %s.getText(%s).%s() ]]]>-->";
     
     private static final Executor executer = Executors.newFixedThreadPool(2);
     
 	private final java.util.Map<String, Adapter> _adapters = new HashMap<String, Adapter>();
+	private final java.util.List<String> _metas = new ArrayList<String>();
 	private final java.util.List<String> _externalScripts = new ArrayList<String>();
 	private final java.util.Map<String, String> _scripts = new HashMap<String, String>();
 	private final java.util.Map<String, String> _java = new HashMap<String, String>();
@@ -161,8 +171,7 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 	private String _md5 = null;
 	
 	/**
-	 * Constructors
-	 * 
+	 * Constructs a SimpleHTMLView instance.
 	 */
 	public SimpleHTMLView() {
 		try {
@@ -184,9 +193,9 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 	}
 	
 	/**
-	 * Constructors
+	 * Constructs a SimpleHTMLView instance.
 	 * 
-	 * @param writeFile
+	 * @param writeFile true if need write the ViewAccelerator class as a class file.
 	 */
 	public SimpleHTMLView(final Boolean writeFile) {
 		try {
@@ -209,9 +218,9 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 	}
 	
 	/**
-	 * Constructors
+	 * Constructs a SimpleHTMLView instance.
 	 * 
-	 * @param acceleratorClass The ViewAccelerator class name
+	 * @param acceleratorClass the special ViewAccelerator class name.
 	 */
 	public SimpleHTMLView(final String acceleratorClass) {
 		if (acceleratorClass == null) {
@@ -237,10 +246,10 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 	}
 
 	/**
-	 * Constructors
+	 * Constructs a SimpleHTMLView instance.
 	 * 
-	 * @param acceleratorClass The ViewAccelerator class name
-	 * @param writeFile
+	 * @param acceleratorClass the spacial ViewAccelerator class name
+	 * @param writeFile true if need write the spacial ViewAccelerator class as a class file.
 	 */
 	public SimpleHTMLView(final String acceleratorClass, final Boolean writeFile) {
 		if (acceleratorClass == null) {
@@ -267,12 +276,11 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 	}
 
 	/**
-	 * Constructors
+	 * Constructs a SimpleHTMLView instance.
 	 * 
-	 * @param acceleratorClass The ViewAccelerator class name
-	 * @param writeFile
-	 * @param document The HTML template document
-	 * @param md5 The MD5 of HTML template file
+	 * @param writeFile true if need write the spacial ViewAccelerator class as a class file.
+	 * @param document the HTML template document.
+	 * @param md5 the MD5 of HTML template file.
 	 */
 	public SimpleHTMLView(final Boolean writeFile, final Document document, final String md5) {
 		if (document == null) {
@@ -311,10 +319,10 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 	}
 
 	/**
-	 * Constructors
+	 * Constructs a SimpleHTMLView instance.
 	 * 
-	 * @param document The HTML template document
-	 * @param md5 The MD5 of template file
+	 * @param document the HTML template document.
+	 * @param md5 the MD5 of template file.
 	 */
 	public SimpleHTMLView(final Document document, final String md5) {
 		if (document == null) {
@@ -352,11 +360,11 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 	}
 
 	/**
-	 * Constructors
+	 * Constructs a SimpleHTMLView instance.
 	 * 
-	 * @param acceleratorClass The ViewAccelerator class name
-	 * @param document The HTML template document
-	 * @param md5 The MD5 of HTML template file
+	 * @param acceleratorClass the special ViewAccelerator class name.
+	 * @param document the HTML template document.
+	 * @param md5 the MD5 of HTML template file.
 	 */
 	public SimpleHTMLView(final String acceleratorClass, final Document document, final String md5) {
 		if (acceleratorClass == null) {
@@ -398,12 +406,12 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 	}
 
 	/**
-	 * Constructors
+	 * Constructs a SimpleHTMLView instance.
 	 * 
-	 * @param acceleratorClass The ViewAccelerator class name
-	 * @param writeFile
-	 * @param document The HTML template document
-	 * @param md5 The MD5 of HTML template file
+	 * @param acceleratorClass the special ViewAccelerator class name.
+	 * @param writeFile true if need write the spacial ViewAccelerator class as a class file.
+	 * @param document the HTML template document.
+	 * @param md5 the MD5 of HTML template file.
 	 */
 	public SimpleHTMLView(final String acceleratorClass, final Boolean writeFile, final Document document, final String md5) {
 		if (acceleratorClass == null) {
@@ -445,21 +453,79 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 		}
 	}
 
-	/**
-	 * 
-	 * @param uri
-	 */
+	@Override
+	public void addMeta(String charset) {
+		if (charset == null) {
+			throw new IllegalArgumentException("charset is null");
+		}
+		final StringBuilder s = new StringBuilder();
+		s.append("<meta charset=\"").append(charset).append("\" />").append('\n');
+		_metas.add(s.toString());
+	}
+
+	@Override
+	public void addMeta(String name, String content) {
+		if (name == null) {
+			throw new IllegalArgumentException("name is null");
+		}
+		if (content == null) {
+			throw new IllegalArgumentException("content is null");
+		}
+		final StringBuilder s = new StringBuilder();
+		s.append("<meta name=\"").append(name).append("\" content=\"").append(content).append("\" />").append('\n');
+		_metas.add(s.toString());
+	}
+
+	@Override
+	public void addMeta(int httpEquiv, String content) {
+		if (content == null) {
+			throw new IllegalArgumentException("content is null");
+		}
+		final StringBuilder s = new StringBuilder();
+		s.append("<meta http-equiv=\"").append(Attributes.toString(httpEquiv)).append("\" content=\"").append(content).append("\" />").append('\n');
+		_metas.add(s.toString());
+	}
+
+	@Override
 	public void addExternalScript(final String uri) {
 		if (uri == null) {
 			throw new IllegalArgumentException("uri is null");
 		}
-		_externalScripts.add(uri);
+		final StringBuilder s = new StringBuilder();
+		s.append("<script type=\"text/javascript\" src=\"").append(uri).append("\"></script>").append('\n');
+		_externalScripts.add(s.toString());
 	}
 	
+	@Override
+	public void addExternalScript(String type, String uri) {
+		if (type == null) {
+			throw new IllegalArgumentException("type is null");
+		}
+		if (uri == null) {
+			throw new IllegalArgumentException("uri is null");
+		}
+		final StringBuilder s = new StringBuilder();
+		s.append("<script type=\"").append(type).append("\" src=\"").append(uri).append("\"></script>").append('\n');
+		_externalScripts.add(s.toString());
+	}
+
+	@Override
+	public void addExternalScript(String type, String uri, boolean async, String defer) {
+		if (type == null) {
+			throw new IllegalArgumentException("type is null");
+		}
+		if (uri == null) {
+			throw new IllegalArgumentException("uri is null");
+		}
+		final StringBuilder s = new StringBuilder();
+		s.append("<script ").append(async ? "async " : "").append("type=\"").append(type).append("\" src=\"").append(uri).append("\" defer=\"").append(defer).append("\"></script>").append('\n');
+		_externalScripts.add(s.toString());
+	}
+
 	/**
-	 * Bind all adapters to these view holders (HTML tags)
+	 * Bind all adapters to these view holders (HTML tags/elements).
 	 * 
-	 * @param bindType, HTML Binding or JavaScript Binding.
+	 * @param bindType View.SERVER_SIDE_BINDING or View.BROWSER_SIDE_BINDING.
 	 */
 	@Override
 	public void bindAll(final int bindType) {
@@ -484,26 +550,58 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 			}
 		}
 		
-		if (!_scripts.isEmpty()) {
+		if (!_metas.isEmpty()) {
+			// Write Meta into HTML document
+			final Elements heads = _document.getElementsByTag("head");
+			if (heads == null) {
+				throw new NotStandardizedHTMLException("No HEAD tag");
+			} else {
+				final Element head = heads.first();
+				if (head == null) {
+					throw new NotStandardizedHTMLException("No HEAD tag");
+				} else {
+					final StringBuilder s = new StringBuilder();
+					for (String meta : _metas) {
+						if (meta != null) s.append(meta).append('\n');
+					}
+					
+					final Elements metas = _document.getElementsByTag("meta");
+					if (!metas.isEmpty()) {
+						metas.last().after(s.toString());
+					} else {
+						final Elements children = head.children();
+						if (!children.isEmpty()) {
+							children.first().before(s.toString());
+						} else {
+							head.append(s.toString());
+						}
+					}
+				}
+			}
+		}
+		
+		if (!_scripts.isEmpty() || !_externalScripts.isEmpty()) {
 			// Build JavaScript 
 			final StringBuffer js = new StringBuffer();
-			final Set<String> callings = _scripts.keySet();
-			if (!callings.isEmpty()) {
-				final Iterator<String> itor = callings.iterator();
-				while (itor.hasNext()) {
-					js.append(_scripts.get(itor.next()));
+			if (!_scripts.isEmpty()) {
+				final Set<String> callings = _scripts.keySet();
+				if (!callings.isEmpty()) {
+					final Iterator<String> itor = callings.iterator();
+					while (itor.hasNext()) {
+						js.append(_scripts.get(itor.next()));
+					}
 				}
-			}
-			js.append('\n');
-			js.append('\n');
-			js.append("function bindAll() {").append('\n');
-			if (!callings.isEmpty()) {
-				final Iterator<String> itor = callings.iterator();
-				while (itor.hasNext()) {
-					js.append(itor.next()).append('\n');
+				js.append('\n');
+				js.append('\n');
+				js.append("function bindAll() {").append('\n');
+				if (!callings.isEmpty()) {
+					final Iterator<String> itor = callings.iterator();
+					while (itor.hasNext()) {
+						js.append(itor.next()).append('\n');
+					}
 				}
+				js.append('}').append(';');
 			}
-			js.append('}').append(';');
 			
 			// Write JavaScript into HTML document
 			final Elements heads = _document.getElementsByTag("head");
@@ -514,15 +612,18 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 				if (head == null) {
 					throw new NotStandardizedHTMLException("No HEAD tag");
 				} else {
-					final StringBuilder script = new StringBuilder();
-					for (String uri : _externalScripts) {
-						if (uri != null) script.append("<script type=\"text/javascript\" src=\"").append(uri).append("\"></script>").append('\n');
+					final StringBuilder s = new StringBuilder();
+					for (String script : _externalScripts) {
+						if (script != null) s.append(script).append('\n');
 					}
-					script.append("<script type=\"text/javascript\">").append('\n');
-					script.append(js).append('\n');
-					script.append("</script>");
 					
-					head.append(script.toString());
+					if (js.length() > 0) {
+						s.append("<script type=\"text/javascript\">").append('\n');
+						s.append(js).append('\n');
+						s.append("</script>");
+					}
+					
+					head.append(s.toString());
 				}
 				
 				// Bind JavaScript with DOM Event
@@ -534,7 +635,7 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 					if (body == null) {
 						throw new NotStandardizedHTMLException("No BODY tag");
 					} else {
-						body.attr("onload", "javascript:bindAll();"); // BUG 扩展而不是替换
+						body.attr("onload", "javascript:bindAll();"); // 可能有 BUG，理论上这里应该是扩展而不是替换
 					}
 				}
 			}
@@ -542,9 +643,10 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 	}
 	
 	/**
-	 * Bind the adapter to the view holder (HTML tags) in HTML Binding mode
+	 * Bind the adapter to the view holder (HTML tag/element) in SERVER_SIDE_BINDING mode
 	 * 
-	 * @param id - The ID of Adapter
+	 * @param id the adapter/element id.
+	 * @param adapter the adapter.
 	 */
 	@SuppressWarnings("rawtypes")
 	protected final void bindHTML(final String id, final Adapter adapter) {
@@ -566,10 +668,10 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 	}
 	
 	/**
-	 * Bind the adapter to the view holder (HTML tags) in Script Binding mode
+	 * Bind the adapter to the view holder (HTML tag/element) in BROWSER_SIDE_BINDING mode
 	 * 
-	 * @param id - The ID of Adapter
-	 * @param adapter - The instance of Adapter
+	 * @param id the adapter/element id.
+	 * @param adapter adapter the adapter.
 	 */
 	@SuppressWarnings("rawtypes")
 	protected final void bindScript(final String id, final Adapter adapter) {
@@ -740,31 +842,31 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 							} // if (method.isAnnotationPresent(GetMethod.class)) 
 						} // end for (final Method method : methods)
 						
-						final java.util.List<LinkGroup> allLinks = adapter.getAllLinkGroup();
-						if (allLinks != null && !allLinks.isEmpty()) {
-							final ID linkID = (ID) Link.class.getAnnotation(ID.class);
-							final String linkId = linkID.identity();
+						final java.util.List<AnchorGroup> allAnchors = adapter.getAllAnchorGroup();
+						if (allAnchors != null && !allAnchors.isEmpty()) {
+							final ID anchorID = (ID) Anchor.class.getAnnotation(ID.class);
+							final String anchorId = anchorID.identity();
 							
 							s.delete(0, s.length());
-							s.append(linkId); // Such as: "link"
+							s.append(anchorId); // Such as: "anchor"
 							if (array != null && !array.isEmpty()) s.append(array); // Such as: "[0]", "[1]"
 							s.append(indexIj); // Such as: "[j]"
-							final String linkIj = s.toString();
+							final String anchorIj = s.toString();
 							
-							final LinkGroup links = allLinks.get(0);
-							if (links != null) {
-								final Method[] mthds = Link.class.getMethods();
-								for (int k = 0; k < links.length(); k ++) {
+							final AnchorGroup anchors = allAnchors.get(0);
+							if (anchors != null) {
+								final Method[] mthds = Anchor.class.getMethods();
+								for (int k = 0; k < anchors.length(); k ++) {
 									for (final Method mthd : mthds) {
 										if (mthd.isAnnotationPresent(GetMethod.class)) {
 											final GetMethod getMethod = mthd.getAnnotation(GetMethod.class);
 											final String getField = getMethod.methodName();
 											final String returnId = getMethod.returnId();
 											s.delete(0, s.length());
-											s.append(linkIj).append('[').append(k).append(']').append('.').append(returnId).toString(); // Such as: "link[j][0].url", "link[0][j][3].title"
+											s.append(anchorIj).append('[').append(k).append(']').append('.').append(returnId).toString(); // Such as: "anchor[j][0].url", "anchor[0][j][3].title"
 											final String elementId = s.toString();
 
-											final String value = String.format(SIMPLE_LIST_LINK_VALUE, list12, j1, k, getField);
+											final String value = String.format(SIMPLE_LIST_ANCHOR_VALUE, list12, j1, k, getField);
 											java.put(elementId, value);
 											if (DEBUG) {
 									            StackTraceElement t = (new Throwable()).getStackTrace()[0];
@@ -773,9 +875,9 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 											}
 										} // if (mthd.isAnnotationPresent(GetMethod.class))
 									} // end for (final Method mthd : mthds)
-								} // end for (int k = 0; k < links.length(); k ++)
-							} // end for if (links != null)
-						} // end if (allLinks != null && !allLinks.isEmpty())
+								} // end for (int k = 0; k < anchors.length(); k ++)
+							} // end for if (anchors != null)
+						} // end if (allAnchors != null && !allAnchors.isEmpty())
 						
 						final java.util.List<TextGroup> allTexts = adapter.getAllTextGroup();
 						if (allTexts != null && !allTexts.isEmpty()) {
@@ -956,8 +1058,8 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 				final String data1 = s.toString(); // Such as "data1", "data2", ... 
 				
 				s.delete(0, s.length());
-				s.append("links").append(index1);
-				final String links1 = s.toString(); // Such as "links1", "links2", ... 
+				s.append("anchors").append(index1);
+				final String anchors1 = s.toString(); // Such as "anchors1", "anchors2", ... 
 				
 				s.delete(0, s.length());
 				s.append("texts").append(index1);
@@ -976,7 +1078,7 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 					s.append(String.format(SIMPLE_FORM_VAR_LINE1, id)).append('\n');
 					s.append(String.format(SIMPLE_FORM_VAR_LINE2, adapter1)).append('\n');
 					s.append(String.format(SIMPLE_FORM_VAR_LINE3, type, data1, type, adapter1)).append('\n');
-					s.append(String.format(SIMPLE_FORM_VAR_LINE4, links1, adapter1)).append('\n');
+					s.append(String.format(SIMPLE_FORM_VAR_LINE4, anchors1, adapter1)).append('\n');
 					s.append(String.format(SIMPLE_FORM_VAR_LINE5, texts1, adapter1)).append('\n');
 					_java.put(id, s.toString());
 				}
@@ -1030,28 +1132,28 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 							} // if (method.isAnnotationPresent(GetMethod.class)) 
 						} // end for (final Method method : methods)
 						
-						final LinkGroup links = adapter.getLinkGroup();
-						if (links != null && links.length() > 0) {
-							final ID linkID = (ID) Link.class.getAnnotation(ID.class);
-							final String linkId = linkID.identity();
+						final AnchorGroup anchors = adapter.getAnchorGroup();
+						if (anchors != null && anchors.length() > 0) {
+							final ID anchorID = (ID) Anchor.class.getAnnotation(ID.class);
+							final String anchorId = anchorID.identity();
 							
 							s.delete(0, s.length());
-							s.append(linkId); // Such as: "link"
+							s.append(anchorId); // Such as: "anchor"
 							if (array != null && !array.isEmpty()) s.append(array); // Such as: "[0]", "[1]"
-							final String linkIj = s.toString();
+							final String anchorIj = s.toString();
 							
-							final Method[] mthds = Link.class.getMethods();
-							for (int k = 0; k < links.length(); k ++) {
+							final Method[] mthds = Anchor.class.getMethods();
+							for (int k = 0; k < anchors.length(); k ++) {
 								for (final Method mthd : mthds) {
 									if (mthd.isAnnotationPresent(GetMethod.class)) {
 										final GetMethod getMethod = mthd.getAnnotation(GetMethod.class);
 										final String getField = getMethod.methodName();
 										final String returnId = getMethod.returnId();
 										s.delete(0, s.length());
-										s.append(linkIj).append('[').append(k).append(']').append('.').append(returnId).toString(); // Such as: "link[j][0].url", "link[0][j][3].title"
+										s.append(anchorIj).append('[').append(k).append(']').append('.').append(returnId).toString(); // Such as: "anchor[j][0].url", "anchor[0][j][3].title"
 										final String elementId = s.toString();
 										
-										final String value = String.format(SIMPLE_FORM_LINK_VALUE, links1, k, getField);
+										final String value = String.format(SIMPLE_FORM_ANCHOR_VALUE, anchors1, k, getField);
 										java.put(elementId, value);
 										if (DEBUG) {
 								            StackTraceElement t = (new Throwable()).getStackTrace()[0];
@@ -1060,8 +1162,8 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 										}
 									} // if (mthd.isAnnotationPresent(GetMethod.class))
 								} // end for (final Method mthd : mthds)
-							} // end for (int k = 0; k < links.length(); k ++)
-						} // end if (links != null && links.length() > 0)
+							} // end for (int k = 0; k < anchors.length(); k ++)
+						} // end if (anchors != null && anchors.length() > 0)
 						
 						final TextGroup texts = adapter.getTextGroup();
 						if (texts != null && texts.length() > 0) {
@@ -1234,8 +1336,8 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 				final String data1 = s.toString(); // Such as "data1", "data2", ... 
 				
 				s.delete(0, s.length());
-				s.append("links").append(index1);
-				final String links1 = s.toString(); // Such as "links1", "links2", ... 
+				s.append("anchors").append(index1);
+				final String anchors1 = s.toString(); // Such as "anchors1", "anchors2", ... 
 				
 				s.delete(0, s.length());
 				s.append("texts").append(index1);
@@ -1250,7 +1352,7 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 					s.append(String.format(SIMPLE_VIEW_VAR_LINE1, id)).append('\n');
 					s.append(String.format(SIMPLE_VIEW_VAR_LINE2, adapter1)).append('\n');
 					s.append(String.format(SIMPLE_VIEW_VAR_LINE3, type, data1, type, adapter1)).append('\n');
-					s.append(String.format(SIMPLE_VIEW_VAR_LINE4, links1, adapter1)).append('\n');
+					s.append(String.format(SIMPLE_VIEW_VAR_LINE4, anchors1, adapter1)).append('\n');
 					s.append(String.format(SIMPLE_VIEW_VAR_LINE5, texts1, adapter1)).append('\n');
 					_java.put(id, s.toString());
 				}
@@ -1304,28 +1406,28 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 							} // if (method.isAnnotationPresent(GetMethod.class)) 
 						} // end for (final Method method : methods)
 						
-						final LinkGroup links = adapter.getLinkGroup();
-						if (links != null && links.length() > 0) {
-							final ID linkID = (ID) Link.class.getAnnotation(ID.class);
-							final String linkId = linkID.identity();
+						final AnchorGroup anchors = adapter.getAnchorGroup();
+						if (anchors != null && anchors.length() > 0) {
+							final ID anchorID = (ID) Anchor.class.getAnnotation(ID.class);
+							final String anchorId = anchorID.identity();
 							
 							s.delete(0, s.length());
-							s.append(linkId); // Such as: "link"
+							s.append(anchorId); // Such as: "anchor"
 							if (array != null && !array.isEmpty()) s.append(array); // Such as: "[0]", "[1]"
-							final String linkIj = s.toString();
+							final String anchorIj = s.toString();
 							
-							final Method[] mthds = Link.class.getMethods();
-							for (int k = 0; k < links.length(); k ++) {
+							final Method[] mthds = Anchor.class.getMethods();
+							for (int k = 0; k < anchors.length(); k ++) {
 								for (final Method mthd : mthds) {
 									if (mthd.isAnnotationPresent(GetMethod.class)) {
 										final GetMethod getMethod = mthd.getAnnotation(GetMethod.class);
 										final String getField = getMethod.methodName();
 										final String returnId = getMethod.returnId();
 										s.delete(0, s.length());
-										s.append(linkIj).append('[').append(k).append(']').append('.').append(returnId).toString(); // Such as: "link[j][0].url", "link[0][j][3].title"
+										s.append(anchorIj).append('[').append(k).append(']').append('.').append(returnId).toString(); // Such as: "anchor[j][0].url", "anchor[0][j][3].title"
 										final String elementId = s.toString();
 										
-										final String value = String.format(SIMPLE_VIEW_LINK_VALUE, links1, k, getField);
+										final String value = String.format(SIMPLE_VIEW_ANCHOR_VALUE, anchors1, k, getField);
 										java.put(elementId, value);
 										if (DEBUG) {
 								            StackTraceElement t = (new Throwable()).getStackTrace()[0];
@@ -1334,8 +1436,8 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 										}
 									} // if (mthd.isAnnotationPresent(GetMethod.class))
 								} // end for (final Method mthd : mthds)
-							} // end for (int k = 0; k < links.length(); k ++)
-						} // end if (links != null && links.length() > 0)
+							} // end for (int k = 0; k < anchors.length(); k ++)
+						} // end if (anchors != null && anchors.length() > 0)
 						
 						final TextGroup texts = adapter.getTextGroup();
 						if (texts != null && texts.length() > 0) {
@@ -1348,7 +1450,7 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 							final String textIj = s.toString();
 							
 							final Method[] mthds = Text.class.getMethods();
-							for (int k = 0; k < links.length(); k ++) {
+							for (int k = 0; k < anchors.length(); k ++) {
 								for (final Method mthd : mthds) {
 									if (mthd.isAnnotationPresent(GetMethod.class)) {
 										final GetMethod getMethod = mthd.getAnnotation(GetMethod.class);
@@ -1444,7 +1546,7 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 				Log.i(TAG, String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName(), newClazz));
 			}
 		} else {
-			final Element container = _document.getElementById(id);
+			final Element container = _document.getElementById(id); // Such as: _map, _map[0], _map[1]
 			if (container == null) {
 	            StackTraceElement t = (new Throwable()).getStackTrace()[0];
 	            String f = "(%s:%d) %s: find element by id return a null: id = \"%s\"";
@@ -1530,18 +1632,18 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 						java.put(elementId, assignment);
 					} // end while (iter1.hasNext())
 					
-					final Set<String> idSetOfLink = adapter.idSetOfLink();
-					final Iterator<String> iter2 = idSetOfLink.iterator();
+					final Set<String> idSetOfAnchor = adapter.idSetOfAnchor();
+					final Iterator<String> iter2 = idSetOfAnchor.iterator();
 					while (iter2.hasNext()) {
 						final String elementId = iter2.next();
-						final Link link = adapter.getLink(elementId);
-						if (link != null) {
-							final Method[] mthds = Link.class.getMethods();
+						final Anchor anchor = adapter.getAnchor(elementId);
+						if (anchor != null) {
+							final Method[] mthds = Anchor.class.getMethods();
 							for (final Method mthd : mthds) {
 								if (mthd.isAnnotationPresent(GetMethod.class)) {
 									final GetMethod getMethod = mthd.getAnnotation(GetMethod.class);
 									final String getField = getMethod.methodName();
-									final String assignment = String.format(SIMPLE_MAP_LINK_VALUE, adapter1, elementId, getField);
+									final String assignment = String.format(SIMPLE_MAP_ANCHOR_VALUE, adapter1, elementId, getField);
 									
 									java.put(elementId, assignment);
 									if (DEBUG) {
@@ -1551,7 +1653,7 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 									}
 								} // if (mthd.isAnnotationPresent(GetMethod.class))
 							} // end for (final Method mthd : mthds)
-						} // end if (links != null && links.length() > 0)
+						} // end if (anchors != null && anchors.length() > 0)
 					} // end while (iter2.hasNext())
 					
 					final Set<String> idSetOfText = adapter.idSetOfText();
@@ -1750,9 +1852,10 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 	}
 	
 	/**
+	 * Returns the item id from the given element id.
 	 * 
-	 * @param elementId - Such as: product.name, order.price, product[0].name, order[1].price, ... 
-	 * @return The item id. Such as: product, order, product[0], order[1], ...
+	 * @param elementId the given element id, such as: product.name, order.price, product[0].name, order[1].price, ... 
+	 * @return the item id, such as: product, order, product[0], order[1], ...
 	 */
 	protected final String getItemIdFromElementId(final String elementId) {
 		String itemId = null;
@@ -1768,8 +1871,8 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 
 	/**
 	 * 
-	 * @param elementId - Such as: product.name, order.price, product[0].name, order[1].price, ... 
-	 * @return The attribute id. Such as: name, price, ... 
+	 * @param elementId such as: product.name, order.price, product[0].name, order[1].price, ... 
+	 * @return the attribute id. Such as: name, price, ... 
 	 */
 	protected final String getAttributeIdFromElementId(final String elementId) {
 		String attributeId = null;
@@ -1781,9 +1884,10 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 	}
 	
 	/**
+	 * Remove all after siblings of the given element, if needRemove is true always.
 	 * 
-	 * @param element
-	 * @param needRemove
+	 * @param element the given element.
+	 * @param needRemove whether need to remove.
 	 */
 	protected final void afterSiblings(final Element element, final Boolean needRemove) {
 		final Element sibling = element.nextElementSibling();
@@ -1794,10 +1898,11 @@ public class SimpleHTMLView extends AbstractView implements Javable, Formattable
 	}
 	
 	/**
+	 * Returns a list contains all after siblings of the given element.
 	 * 
-	 * @param element
-	 * @param list
-	 * @return
+	 * @param element the given element.
+	 * @param list the list to save all after siblings.
+	 * @return a list contains all after siblings of the given element.
 	 */
 	protected final java.util.List<Element> afterSiblings(final Element element, final java.util.List<Element> list) {
 		list.add(element);

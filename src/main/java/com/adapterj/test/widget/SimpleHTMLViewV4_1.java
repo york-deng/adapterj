@@ -37,8 +37,8 @@ import com.adapterj.widget.AbstractView;
 import com.adapterj.widget.Adapter;
 import com.adapterj.widget.BindException;
 import com.adapterj.widget.SimpleMapAdapter;
-import com.adapterj.widget.Link;
-import com.adapterj.widget.LinkGroup;
+import com.adapterj.widget.Anchor;
+import com.adapterj.widget.AnchorGroup;
 import com.adapterj.widget.ListAdapter;
 import com.adapterj.widget.NotStandardizedHTMLException;
 import com.adapterj.widget.SelectOptions;
@@ -517,7 +517,7 @@ public class SimpleHTMLViewV4_1 extends AbstractView {
 				final java.util.Map<String, String> java = new LinkedHashMap<String, String>();
 				final java.util.List allItems = adapter.getAllItems();
 				if (allItems != null) {
-					final java.util.List<LinkGroup> allLinks = adapter.getAllLinkGroup();
+					final java.util.List<AnchorGroup> allLinks = adapter.getAllAnchorGroup();
 					
 					final Object sample = allItems.get(0);
 					final Class clazz = sample.getClass();
@@ -527,7 +527,7 @@ public class SimpleHTMLViewV4_1 extends AbstractView {
 					final String classId = classID.identity();
 					final Method[] methods = clazz.getMethods();
 					
-					final ID linkID = (ID) Link.class.getAnnotation(ID.class);
+					final ID linkID = (ID) Anchor.class.getAnnotation(ID.class);
 					final String linkId = linkID.identity();
 					
 					final StringBuilder linkBuilder = new StringBuilder();
@@ -593,11 +593,11 @@ public class SimpleHTMLViewV4_1 extends AbstractView {
 							} // end for (final Method method : methods)
 	
 							if (allLinks != null) {
-								final LinkGroup links = allLinks.get(0);
+								final AnchorGroup links = allLinks.get(0);
 								if (links != null) {
-									final Method[] mthds = Link.class.getMethods();
+									final Method[] mthds = Anchor.class.getMethods();
 									for (int k = 0; k < links.length(); k ++) {
-										final Link link = links.link(k);
+										final Anchor link = links.anchor(k);
 										if (link != null) {
 											for (final Method mthd : mthds) {
 												if (mthd.isAnnotationPresent(GetMethod.class)) {
@@ -788,12 +788,12 @@ public class SimpleHTMLViewV4_1 extends AbstractView {
 				} // end for (final Method method : methods)
 			} // end if (clazz.isAnnotationPresent(ID.class))
 
-			final LinkGroup links = adapter.getLinkGroup();
+			final AnchorGroup links = adapter.getAnchorGroup();
 			if (links != null) {
-				final ID classID = Link.class.getAnnotation(ID.class);
+				final ID classID = Anchor.class.getAnnotation(ID.class);
 				final String classId = classID.identity();
 				for (int k = 0; k < links.length(); k ++) {
-					final Link link = links.link(k);
+					final Anchor link = links.anchor(k);
 					if (link != null) {
 						final Method[] mthds = link.getClass().getMethods();
 						for (final Method mthd : mthds) {
@@ -1017,12 +1017,12 @@ public class SimpleHTMLViewV4_1 extends AbstractView {
 				}
 			} */
 			
-			final LinkGroup links = adapter.getLinkGroup();
+			final AnchorGroup links = adapter.getAnchorGroup();
 			if (links != null) {
-				final ID classID = Link.class.getAnnotation(ID.class);
+				final ID classID = Anchor.class.getAnnotation(ID.class);
 				final String classId = classID.identity();
 				for (int k = 0; k < links.length(); k ++) {
-					final Link link = links.link(k);
+					final Anchor link = links.anchor(k);
 					if (link != null) {
 						final Method[] mthds = link.getClass().getMethods();
 						for (final Method mthd : mthds) {
@@ -1439,5 +1439,35 @@ public class SimpleHTMLViewV4_1 extends AbstractView {
         
 		final String html = _document.toString();
 		return (html);
+	}
+
+	@Override
+	public void addMeta(String charset) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addMeta(String name, String content) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addMeta(int httpEquiv, String content) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addExternalScript(String type, String uri) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addExternalScript(String type, String uri, boolean async, String defer) {
+		// TODO Auto-generated method stub
+		
 	}
 }

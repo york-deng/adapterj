@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2019 York/GuangYu Deng (york.deng@qq.com).
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.adapterj.logging;
 
 import java.util.Map;
@@ -10,10 +25,6 @@ import static java.util.logging.Level.INFO;
 import static java.util.logging.Level.SEVERE;
 import static java.util.logging.Level.WARNING;
 
-/**
- * 
- * @author York/GuangYu DENG
- */
 public class Log {
 
     private static final boolean DEBUG = Debugger.DEBUG;
@@ -22,11 +33,6 @@ public class Log {
 
     private static final Map<String, Logger> loggers = new ConcurrentHashMap<String, Logger>();
 
-    /**
-     * 
-     * @param throwable
-     * @return
-     */
     public static String getStackTraceString(Throwable thrown) {
     	final StringBuffer s = new StringBuffer();
     	s.append(thrown.getMessage()).append('\n');
@@ -38,11 +44,6 @@ public class Log {
     	return s.toString();
     }
 
-    /**
-     * 
-     * @param throwable
-     * @return
-     */
     public static String getStackTraceHTMLString(Throwable e) {
     	final StringBuffer s = new StringBuffer();
     	s.append("<ul>");
@@ -57,12 +58,7 @@ public class Log {
     	s.append("</ul>");
     	return s.toString();
     }
-    
-    /**
-     *
-     * @param tag
-     * @param msg
-     */
+
     public static void v(String tag, String msg) {
         if (DEBUG) {
             Logger log = loggers.get(tag);
@@ -73,12 +69,6 @@ public class Log {
         }
     }
 
-    /**
-     *
-     * @param tag
-     * @param msg
-     * @param trace
-     */
 //    public static void v(String tag, String msg, StackTraceElement trace) {
 //        if (DEBUG) {
 //            Logger log = loggers.get(tag);
@@ -89,12 +79,6 @@ public class Log {
 //        }
 //    }
 
-    /**
-     *
-     * @param tag
-     * @param msg
-     * @param thrown
-     */
     public static void v(String tag, String msg, Throwable thrown) {
         if (DEBUG) {
             Logger log = loggers.get(tag);
@@ -106,11 +90,6 @@ public class Log {
         }
     }
 
-    /**
-     *
-     * @param tag
-     * @param msg
-     */
     public static void d(String tag, String msg) {
         if (DEBUG) {
             Logger log = loggers.get(tag);
@@ -121,12 +100,6 @@ public class Log {
         }
     }
 
-    /**
-     *
-     * @param tag
-     * @param msg
-     * @param trace
-     */
 //    public static void d(String tag, String msg, StackTraceElement trace) {
 //        if (DEBUG) {
 //            Logger log = loggers.get(tag);
@@ -137,12 +110,6 @@ public class Log {
 //        }
 //    }
 
-    /**
-     *
-     * @param tag
-     * @param msg
-     * @param thrown
-     */
     public static void d(String tag, String msg, Throwable thrown) {
         if (DEBUG) {
             Logger log = loggers.get(tag);
@@ -154,11 +121,6 @@ public class Log {
         }
     }
 
-    /**
-     *
-     * @param tag
-     * @param msg
-     */
     public static void i(String tag, String msg) {
         if (DEBUG) {
             Logger log = loggers.get(tag);
@@ -169,12 +131,6 @@ public class Log {
         }
     }
 
-    /**
-     *
-     * @param tag
-     * @param msg
-     * @param trace
-     */
 //    public static void i(String tag, String msg, StackTraceElement trace) {
 //        if (DEBUG) {
 //            Logger log = loggers.get(tag);
@@ -185,12 +141,6 @@ public class Log {
 //        }
 //    }
 
-    /**
-     *
-     * @param tag
-     * @param msg
-     * @param thrown
-     */
     public static void i(String tag, String msg, Throwable thrown) {
         if (DEBUG) {
             Logger log = loggers.get(tag);
@@ -202,11 +152,6 @@ public class Log {
         }
     }
 
-    /**
-     *
-     * @param tag
-     * @param msg
-     */
     public static void w(String tag, String msg) {
         if (DEBUG) {
             Logger log = loggers.get(tag);
@@ -217,12 +162,6 @@ public class Log {
         }
     }
 
-    /**
-     *
-     * @param tag
-     * @param msg
-     * @param trace
-     */
 //    public static void w(String tag, String msg, StackTraceElement trace) {
 //        if (DEBUG) {
 //            Logger log = loggers.get(tag);
@@ -233,12 +172,6 @@ public class Log {
 //        }
 //    }
 
-    /**
-     *
-     * @param tag
-     * @param msg
-     * @param thrown
-     */
     public static void w(String tag, String msg, Throwable thrown) {
         if (DEBUG) {
             Logger log = loggers.get(tag);
@@ -253,11 +186,6 @@ public class Log {
         }
     }
 
-    /**
-     *
-     * @param tag
-     * @param msg
-     */
     public static void e(String tag, String msg) {
         if (DEBUG) {
             Logger log = loggers.get(tag);
@@ -268,12 +196,6 @@ public class Log {
         }
     }
 
-    /**
-     *
-     * @param tag
-     * @param msg
-     * @param trace
-     */
 //    public static void e(String tag, String msg, StackTraceElement trace) {
 //        if (DEBUG) {
 //            Logger log = loggers.get(tag);
@@ -284,12 +206,6 @@ public class Log {
 //        }
 //    }
 
-    /**
-     *
-     * @param tag
-     * @param msg
-     * @param thrown
-     */
     public static void e(String tag, String msg, Throwable thrown) {
         if (DEBUG) {
             Logger log = loggers.get(tag);

@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2019 York/GuangYu Deng (york.deng@qq.com).
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.adapterj.widget;
 
 import java.util.Iterator;
@@ -20,9 +35,10 @@ public class SimpleSelectOptions extends AbstractSelectOptions implements Javabl
 	private final String _id;
 	
 	/**
+	 * Constructs a SimpleSelectOptions instance.
 	 * 
-	 * @param selectId
-	 * @param options
+	 * @param selectId the HTML select tag/element id. 
+	 * @param options the select-options list.
 	 */
 	public SimpleSelectOptions(final String selectId, final List<String> options) {
 		_id = selectId;
@@ -35,10 +51,11 @@ public class SimpleSelectOptions extends AbstractSelectOptions implements Javabl
 	}
 
 	/**
+	 * Constructs a SimpleSelectOptions instance.
 	 * 
-	 * @param selectId
-	 * @param options
-	 * @param selected
+	 * @param selectId the HTML select tag/element id. 
+	 * @param options the select-options list.
+	 * @param selected the selected option value.
 	 */
 	public SimpleSelectOptions(String selectId, List<String> options, int selected) {
 		_id = selectId;
@@ -50,9 +67,10 @@ public class SimpleSelectOptions extends AbstractSelectOptions implements Javabl
 	}
 
 	/**
+	 * Constructs a SimpleSelectOptions instance.
 	 * 
-	 * @param selectId
-	 * @param options
+	 * @param selectId the HTML select tag/element id. 
+	 * @param options the select-options map.
 	 */
 	public SimpleSelectOptions(String selectId, Map<String, String> options) {
 		_id = selectId;
@@ -66,10 +84,11 @@ public class SimpleSelectOptions extends AbstractSelectOptions implements Javabl
 	}
 
 	/**
+	 * Constructs a SimpleSelectOptions instance.
 	 * 
-	 * @param selectId
-	 * @param options
-	 * @param selected
+	 * @param selectId the HTML select tag/element id. 
+	 * @param options the select-options map.
+	 * @param selected the selected option value.
 	 */
 	public SimpleSelectOptions(String selectId, Map<String, String> options, String selected) {
 		_id = selectId;
@@ -87,10 +106,11 @@ public class SimpleSelectOptions extends AbstractSelectOptions implements Javabl
 	}
 
 	/**
+	 * Constructs a SimpleSelectOptions instance.
 	 * 
-	 * @param selectId
-	 * @param options
-	 * @param selected
+	 * @param selectId the HTML select tag/element id. 
+	 * @param options the select-options map.
+	 * @param selected the selected option value.
 	 */
 	public SimpleSelectOptions(String selectId, Map<Integer, String> options, Integer selected) {
 		_id = selectId;

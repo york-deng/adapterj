@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2019 York/GuangYu Deng (york.deng@qq.com).
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.adapterj.widget;
 
 import java.util.HashMap;
@@ -10,8 +25,8 @@ import com.google.gson.Gson;
 import com.adapterj.annotation.POJO;
 
 /**
+ * The adapter contains only one POJO instance for a simple view.
  * 
- * @author York/GuangYu DENG
  */
 @POJO(classId = "_view")
 public class SimpleViewAdapter<T> extends AbstractPOJOAdapter<T> {
@@ -21,9 +36,10 @@ public class SimpleViewAdapter<T> extends AbstractPOJOAdapter<T> {
 	private final Map<String, SelectOptions> _optionsMap = new HashMap<String, SelectOptions>();
 
 	/**
+	 * Puts a select-options into this adapter.
 	 * 
-	 * @param id
-	 * @param options
+	 * @param id the HTML select tag/element id.
+	 * @param options the select-options.
 	 */
 	public void putSelectOptions(String id, SelectOptions options) {
 		if (id == null) {
@@ -38,9 +54,10 @@ public class SimpleViewAdapter<T> extends AbstractPOJOAdapter<T> {
 	}
 	
 	/**
+	 * Puts a select-options map into this adapter.
 	 * 
-	 * @param id
-	 * @param options
+	 * @param id the HTML select tag/element id.
+	 * @param options the select-options map.
 	 */
 	public void putSelectOptions(String id, Map<String, String> options) {
 		if (id == null) {
@@ -55,10 +72,11 @@ public class SimpleViewAdapter<T> extends AbstractPOJOAdapter<T> {
 	}
 	
 	/**
+	 * Puts a select-options map into this adapter.
 	 * 
-	 * @param id
-	 * @param options
-	 * @param selected
+	 * @param id the HTML select tag/element id.
+	 * @param options the select-options map.
+	 * @param selected the selected option value.
 	 */
 	public void putSelectOptions(String id, Map<String, String> options, String selected) {
 		if (id == null) {
@@ -77,9 +95,10 @@ public class SimpleViewAdapter<T> extends AbstractPOJOAdapter<T> {
 	}
 
 	/**
+	 * Puts a select-options list into this adapter.
 	 * 
-	 * @param id
-	 * @param options
+	 * @param id the HTML select tag/element id.
+	 * @param options the select-options list.
 	 */
 	public void putSelectOptions(String id, List<String> options) {
 		if (id == null) {
@@ -94,10 +113,11 @@ public class SimpleViewAdapter<T> extends AbstractPOJOAdapter<T> {
 	}
 
 	/**
+	 * Puts a select-options list into this adapter.
 	 * 
-	 * @param id
-	 * @param options
-	 * @param selected
+	 * @param id the HTML select tag/element id.
+	 * @param options the select-options list.
+	 * @param selected the selected option int value.
 	 */
 	public void putSelectOptions(String id, List<String> options, int selected) {
 		if (id == null) {
@@ -177,9 +197,9 @@ public class SimpleViewAdapter<T> extends AbstractPOJOAdapter<T> {
 			i ++;
 		}
 		
-		// links
-		s.append("var").append(' ').append("_links").append(' ').append('=').append(' ').append(_links.toJSONString()).append(';').append('\n');
-		s.append("var _length = _links.length;").append('\n');
+		// anchors
+		s.append("var").append(' ').append("_anchors").append(' ').append('=').append(' ').append(_anchors.toJSONString()).append(';').append('\n');
+		s.append("var _length = _anchors.length;").append('\n');
 
 		// adapter
 		s.append('\n');
@@ -189,12 +209,12 @@ public class SimpleViewAdapter<T> extends AbstractPOJOAdapter<T> {
 		}
 		s.append("adapter.setData(_pojo);").append('\n');
 		s.append('\n');
-		s.append("var links = new ADAPTERJ.widget.LinkGroup(_length);").append('\n');
+		s.append("var anchors = new ADAPTERJ.widget.AnchorGroup(_length);").append('\n');
 		s.append("for (var i = 0; i < _length; i ++) {").append('\n');
-		s.append("var link = _links[i];").append('\n');
-		s.append("if (link) links.setLink(i, new ADAPTERJ.widget.Link(link.url, link.title, link.label));").append('\n');
+		s.append("var anchor = _anchors[i];").append('\n');
+		s.append("if (anchor) anchors.setAnchor(i, new ADAPTERJ.widget.Anchor(anchor.url, anchor.title, anchor.label));").append('\n');
 		s.append('}').append(';').append('\n');
-		s.append("adapter.setLinkGroup(links);").append('\n');
+		s.append("adapter.setAnchorGroup(anchors);").append('\n');
 		s.append('\n');
 		s.append("adapter.bindViewHolder();").append('\n');
 		

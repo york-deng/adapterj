@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2019 York/GuangYu Deng (york.deng@qq.com).
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.adapterj.text;
 
 import java.text.DecimalFormat;
@@ -6,10 +21,6 @@ import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-/**
- * 
- * @author York/GuangYu DENG
- */
 public class Formatter {
 	
 	// The mapping from pattern to date format
@@ -55,110 +66,123 @@ public class Formatter {
 	private String _placeholderForEmpty = "";
 	
 	/**
-	 * Constructs
+	 * Constructs a Formatter instance.
 	 */
 	public Formatter() { }
 	
 	/**
+	 * Sets a pattern for java.util.Date type.
 	 * 
-	 * @param pattern
+	 * @param pattern the pattern.
 	 */
 	public void setPatternForDate(final String pattern) {
 		if (pattern != null && !pattern.isEmpty()) _format1 = pattern;
 	}
 
 	/**
+	 * Sets a placeholder for java.util.Date type.
 	 * 
-	 * @param placeholder
+	 * @param placeholder the placeholder.
 	 */
 	public void setPlaceholderForDate(final String placeholder) {
 		_placeholderForDate = placeholder;
 	}
 
 	/**
+	 * Sets a pattern for int type.
 	 * 
-	 * @param pattern
+	 * @param pattern the pattern.
 	 */
 	public void setPatternForInteger(final String pattern) {
 		if (pattern != null && !pattern.isEmpty()) _format2 = pattern;
 	}
 
 	/**
+	 * Sets a placeholder for int type.
 	 * 
-	 * @param placeholder
+	 * @param placeholder the placeholder.
 	 */
 	public void setPlaceholderForInteger(final String placeholder) {
 		_placeholderForInteger = placeholder;
 	}
 
 	/**
+	 * Sets a pattern for long type.
 	 * 
-	 * @param pattern
+	 * @param pattern the pattern.
 	 */
 	public void setPatternForLong(final String pattern) {
 		if (pattern != null && !pattern.isEmpty()) _format3 = pattern;
 	}
 
 	/**
+	 * Sets a placeholder for long type.
 	 * 
-	 * @param placeholder
+	 * @param placeholder the placeholder.
 	 */
 	public void setPlaceholderForLong(final String placeholder) {
 		_placeholderForLong = placeholder;
 	}
 
 	/**
+	 * Sets a pattern for float type.
 	 * 
-	 * @param pattern
+	 * @param pattern the pattern.
 	 */
 	public void setPatternForFloat(final String pattern) {
 		if (pattern != null && !pattern.isEmpty()) _format4 = pattern;
 	}
 
 	/**
+	 * Sets a placeholder for float type.
 	 * 
-	 * @param placeholder
+	 * @param placeholder the placeholder.
 	 */
 	public void setPlaceholderForFloat(final String placeholder) {
 		_placeholderForFloat = placeholder;
 	}
 
 	/**
+	 * Sets a pattern for double type.
 	 * 
-	 * @param pattern
+	 * @param pattern the pattern.
 	 */
 	public void setPatternForDouble(final String pattern) {
 		if (pattern != null && !pattern.isEmpty()) _format5 = pattern;
 	}
 
 	/**
+	 * Sets a placeholder for double type.
 	 * 
-	 * @param placeholder
+	 * @param placeholder the placeholder.
 	 */
 	public void setPlaceholderForDouble(final String placeholder) {
 		_placeholderForDouble = placeholder;
 	}
 
 	/**
+	 * Sets a placeholder for null.
 	 * 
-	 * @param placeholderForNull
+	 * @param placeholderForNull the placeholder for null.
 	 */
 	public void setPlaceholderForNull(final String placeholderForNull) {
 		_placeholderForNull = placeholderForNull;
 	}
 
 	/**
+	 * Sets a placeholder for empty value/string.
 	 * 
-	 * @param placeholderForEmpty
+	 * @param placeholderForEmpty the placeholder for empty value/string.
 	 */
 	public void setPlaceholderForEmpty(final String placeholderForEmpty) {
 		_placeholderForEmpty = placeholderForEmpty;
 	}
 
 	/**
+	 * Returns a formatted string by the given value.
 	 * 
-	 * @param value
-	 * @return
+	 * @param value the given value.
+	 * @return a formatted string by the given value.
 	 */
 	public String format(final Date value) {
 		try {
@@ -175,10 +199,11 @@ public class Formatter {
 	}
 
 	/**
+	 * Returns a formatted string by the given value, and the given pattern.
 	 * 
-	 * @param value
-	 * @param pattern
-	 * @return
+	 * @param value the given value.
+	 * @param pattern the given pattern.
+	 * @return a formatted string by the given value, and the given pattern.
 	 */
 	public String format(final Date value, final String pattern) {
 		try {
@@ -196,11 +221,12 @@ public class Formatter {
 	}
 	
 	/**
+	 * Returns a formatted string by the given value, the given pattern, and the given placeholder.
 	 * 
-	 * @param value
-	 * @param pattern
-	 * @param placeholder
-	 * @return
+	 * @param value the given value.
+	 * @param pattern the given pattern.
+	 * @param placeholder the given placeholder.
+	 * @return a formatted string by the given value, the given pattern, and the given placeholder.
 	 */
 	public String format(final Date value, final String pattern, final String placeholder) {
 		try {
@@ -218,9 +244,10 @@ public class Formatter {
 	}
 	
 	/**
+	 * Returns a formatted string by the given value.
 	 * 
-	 * @param value
-	 * @return
+	 * @param value the given value.
+	 * @return a formatted string by the given value.
 	 */
 	public String format(final Integer value) {
 		try {
@@ -237,9 +264,10 @@ public class Formatter {
 	}
 	
 	/**
+	 * Returns a formatted string by the given value.
 	 * 
-	 * @param value
-	 * @return
+	 * @param value the given value.
+	 * @return a formatted string by the given value.
 	 */
 	public String format(final int value) {
 		try {
@@ -256,10 +284,11 @@ public class Formatter {
 	}
 
 	/**
+	 * Returns a formatted string by the given value, and the given pattern.
 	 * 
-	 * @param value
-	 * @param pattern
-	 * @return
+	 * @param value the given value.
+	 * @param pattern the given pattern.
+	 * @return a formatted string by the given value, and the given pattern.
 	 */
 	public String format(final Integer value, final String pattern) {
 		try {
@@ -277,10 +306,11 @@ public class Formatter {
 	}
 
 	/**
+	 * Returns a formatted string by the given value, and the given pattern.
 	 * 
-	 * @param value
-	 * @param pattern
-	 * @return
+	 * @param value the given value.
+	 * @param pattern the given pattern.
+	 * @return a formatted string by the given value, and the given pattern.
 	 */
 	public String format(final int value, final String pattern) {
 		try {
@@ -298,11 +328,12 @@ public class Formatter {
 	}
 	
 	/**
+	 * Returns a formatted string by the given value, the given pattern, and the given placeholder.
 	 * 
-	 * @param value
-	 * @param pattern
-	 * @param placeholder
-	 * @return
+	 * @param value the given value.
+	 * @param pattern the given pattern.
+	 * @param placeholder the given placeholder.
+	 * @return a formatted string by the given value, the given pattern, and the given placeholder.
 	 */
 	public String format(final Integer value, final String pattern, final String placeholder) {
 		try {
@@ -320,11 +351,12 @@ public class Formatter {
 	}
 	
 	/**
+	 * Returns a formatted string by the given value, the given pattern, and the given placeholder.
 	 * 
-	 * @param value
-	 * @param pattern
-	 * @param placeholder
-	 * @return
+	 * @param value the given value.
+	 * @param pattern the given pattern.
+	 * @param placeholder the given placeholder.
+	 * @return a formatted string by the given value, the given pattern, and the given placeholder.
 	 */
 	public String format(final int value, final String pattern, final String placeholder) {
 		try {
@@ -342,9 +374,10 @@ public class Formatter {
 	}
 	
 	/**
+	 * Returns a formatted string by the given value.
 	 * 
 	 * @param value
-	 * @return
+	 * @return a formatted string by the given value.
 	 */
 	public String format(final Long value) {
 		try {
@@ -361,9 +394,10 @@ public class Formatter {
 	}
 	
 	/**
+	 * Returns a formatted string by the given value.
 	 * 
-	 * @param value
-	 * @return
+	 * @param value the given value
+	 * @return a formatted string by the given value.
 	 */
 	public String format(final long value) {
 		try {
@@ -380,10 +414,11 @@ public class Formatter {
 	}
 
 	/**
+	 * Returns a formatted string by the given value, the given pattern.
 	 * 
-	 * @param value
-	 * @param pattern
-	 * @return
+	 * @param value the given value.
+	 * @param pattern the given pattern.
+	 * @return a formatted string by the given value, the given pattern.
 	 */
 	public String format(final Long value, final String pattern) {
 		try {
@@ -401,10 +436,11 @@ public class Formatter {
 	}
 
 	/**
+	 * Returns a formatted string by the given value, the given pattern.
 	 * 
-	 * @param value
-	 * @param pattern
-	 * @return
+	 * @param value the given value.
+	 * @param pattern the given pattern.
+	 * @return a formatted string by the given value, the given pattern.
 	 */
 	public String format(final long value, final String pattern) {
 		try {
@@ -422,11 +458,12 @@ public class Formatter {
 	}
 	
 	/**
+	 * Returns a formatted string by the given value, the given pattern, and the given placeholder.
 	 * 
-	 * @param value
-	 * @param pattern
-	 * @param placeholder
-	 * @return
+	 * @param value the given value.
+	 * @param pattern the given pattern.
+	 * @param placeholder the given placeholder.
+	 * @return a formatted string by the given value, the given pattern, and the given placeholder.
 	 */
 	public String format(final Long value, final String pattern, final String placeholder) {
 		try {
@@ -444,11 +481,12 @@ public class Formatter {
 	}
 	
 	/**
+	 * Returns a formatted string by the given value, the given pattern, and the given placeholder.
 	 * 
-	 * @param value
-	 * @param pattern
-	 * @param placeholder
-	 * @return
+	 * @param value the given value.
+	 * @param pattern the given pattern.
+	 * @param placeholder the given placeholder.
+	 * @return a formatted string by the given value, the given pattern, and the given placeholder.
 	 */
 	public String format(final long value, final String pattern, final String placeholder) {
 		try {
@@ -466,9 +504,10 @@ public class Formatter {
 	}
 	
 	/**
+	 * Returns a formatted string by the given value.
 	 * 
-	 * @param value
-	 * @return
+	 * @param value the given value.
+	 * @return a formatted string by the given value.
 	 */
 	public String format(final Float value) {
 		try {
@@ -485,9 +524,10 @@ public class Formatter {
 	}
 	
 	/**
+	 * Returns a formatted string by the given value.
 	 * 
-	 * @param value
-	 * @return
+	 * @param value the given value.
+	 * @return a formatted string by the given value.
 	 */
 	public String format(final float value) {
 		try {
@@ -504,10 +544,11 @@ public class Formatter {
 	}
 
 	/**
+	 * Returns a formatted string by the given value, and the given pattern.
 	 * 
-	 * @param value
-	 * @param pattern
-	 * @return
+	 * @param value the given value.
+	 * @param pattern the given pattern.
+	 * @return a formatted string by the given value, and the given pattern.
 	 */
 	public String format(final Float value, final String pattern) {
 		try {
@@ -525,10 +566,11 @@ public class Formatter {
 	}
 
 	/**
+	 * Returns a formatted string by the given value, and the given pattern.
 	 * 
-	 * @param value
-	 * @param pattern
-	 * @return
+	 * @param value the given value
+	 * @param pattern the given pattern
+	 * @return a formatted string by the given value, and the given pattern.
 	 */
 	public String format(final float value, final String pattern) {
 		try {
@@ -546,11 +588,12 @@ public class Formatter {
 	}
 	
 	/**
+	 * Returns a formatted string by the given value, the given pattern, and the given placeholder.
 	 * 
-	 * @param value
-	 * @param pattern
-	 * @param placeholder
-	 * @return
+	 * @param value the given value
+	 * @param pattern the given pattern
+	 * @param placeholder the given placeholder
+	 * @return a formatted string by the given value, the given pattern, and the given placeholder.
 	 */
 	public String format(final Float value, final String pattern, final String placeholder) {
 		try {
@@ -568,11 +611,12 @@ public class Formatter {
 	}
 	
 	/**
+	 * Returns a formatted string by the given value, the given pattern, and the given placeholder.
 	 * 
-	 * @param value
-	 * @param pattern
-	 * @param placeholder
-	 * @return
+	 * @param value the given value
+	 * @param pattern the given pattern
+	 * @param placeholder the given placeholder
+	 * @return a formatted string by the given value, the given pattern, and the given placeholder.
 	 */
 	public String format(final float value, final String pattern, final String placeholder) {
 		try {
@@ -590,9 +634,10 @@ public class Formatter {
 	}
 	
 	/**
+	 * Returns a formatted string by the given value.
 	 * 
-	 * @param value
-	 * @return
+	 * @param value the given value.
+	 * @return a formatted string.
 	 */
 	public String format(final Double value) {
 		try {
@@ -609,9 +654,10 @@ public class Formatter {
 	}
 	
 	/**
+	 * Returns a formatted string by the given value.
 	 * 
-	 * @param value
-	 * @return
+	 * @param value the given value.
+	 * @return a formatted string.
 	 */
 	public String format(final double value) {
 		try {
@@ -628,10 +674,11 @@ public class Formatter {
 	}
 	
 	/**
+	 * Returns a formatted string by the given value, the given pattern.
 	 * 
-	 * @param value
-	 * @param pattern
-	 * @return
+	 * @param value the given value.
+	 * @param pattern the given pattern.
+	 * @return a formatted string.
 	 */
 	public String format(final Double value, final String pattern) {
 		try {
@@ -649,10 +696,11 @@ public class Formatter {
 	}
 	
 	/**
+	 * Returns a formatted string by the given value, the given pattern.
 	 * 
-	 * @param value
-	 * @param pattern
-	 * @return
+	 * @param value the given value.
+	 * @param pattern the given pattern.
+	 * @return a formatted string.
 	 */
 	public String format(final double value, final String pattern) {
 		try {
@@ -670,11 +718,12 @@ public class Formatter {
 	}
 	
 	/**
+	 * Returns a formatted string by the given value, the given pattern, and the given placeholder.
 	 * 
-	 * @param value
-	 * @param pattern
-	 * @param placeholder
-	 * @return
+	 * @param value the given value.
+	 * @param pattern the given pattern.
+	 * @param placeholder the given placeholder.
+	 * @return a formatted string.
 	 */
 	public String format(final Double value, final String pattern, final String placeholder) {
 		try {
@@ -692,11 +741,12 @@ public class Formatter {
 	}
 	
 	/**
+	 * Returns a formatted string by the given value, the given pattern, and the given placeholder.
 	 * 
-	 * @param value
-	 * @param pattern
-	 * @param placeholder
-	 * @return
+	 * @param value the given value.
+	 * @param pattern the given pattern.
+	 * @param placeholder the given placeholder.
+	 * @return a formatted string.
 	 */
 	public String format(final double value, final String pattern, final String placeholder) {
 		try {
@@ -714,9 +764,10 @@ public class Formatter {
 	}
 	
 	/**
+	 * Returns a formatted string by the given value.
 	 * 
-	 * @param value
-	 * @return
+	 * @param value the given value.
+	 * @return a formatted string.
 	 */
 	public String format(final String value) {
 		if (value == null) {
@@ -729,10 +780,11 @@ public class Formatter {
 	}
 	
 	/**
+	 * Returns a formatted string by the given value and the given placeholder.
 	 * 
-	 * @param value
-	 * @param placeholder
-	 * @return
+	 * @param value the given value.
+	 * @param placeholder the given placeholder.
+	 * @return a formatted string.
 	 */
 	public String format(final String value, final String placeholder) {
 		if (value == null) {
@@ -745,9 +797,10 @@ public class Formatter {
 	}
 	
 	/**
+	 * Returns a formatted string by the given value.
 	 * 
-	 * @param value
-	 * @return
+	 * @param value the given value.
+	 * @return a formatted string.
 	 */
 	public String format(final Boolean value) {
 		if (value == null) {
@@ -758,18 +811,20 @@ public class Formatter {
 	}
 	
 	/**
+	 * Returns a formatted string by the given value.
 	 * 
-	 * @param value
-	 * @return
+	 * @param value the given value.
+	 * @return a formatted string.
 	 */
 	public String format(final boolean value) {
 		return Boolean.toString(value);
 	}
 	
 	/**
+	 * Returns a formatted string by the given value.
 	 * 
-	 * @param value
-	 * @return
+	 * @param value the given value.
+	 * @return a formatted string.
 	 */
 	public String format(final Boolean value, final Boolean upperCase) {
 		if (value == null) {
@@ -780,18 +835,20 @@ public class Formatter {
 	}
 	
 	/**
+	 * Returns a formatted string by the given value.
 	 * 
-	 * @param value
-	 * @return
+	 * @param value the given value.
+	 * @return a formatted string.
 	 */
 	public String format(final boolean value, final Boolean upperCase) {
 		return upperCase ? Boolean.toString(value).toUpperCase() : Boolean.toString(value);
 	}
 	
 	/**
+	 * Returns a formatted string by the given value.
 	 * 
-	 * @param value
-	 * @return
+	 * @param value the given value.
+	 * @return a formatted string.
 	 */
 	public String format(final Object value) {
 		if (value == null) {
