@@ -70,19 +70,19 @@ ADAPTERJ.namespace = function(ns) {
 ADAPTERJ.namespace("widget");
 
 /**
- * Link
+ * Anchor
  */
-ADAPTERJ.widget.Link = function(url, text) {
+ADAPTERJ.widget.Anchor = function(url, text) {
     this.init(url, text);
 };
 
-ADAPTERJ.widget.Link.prototype = {
+ADAPTERJ.widget.Anchor.prototype = {
     
     /**
      *
      * @type String
      */
-    _id: "link",
+    _id: "anchor",
         
     /**
      *
@@ -97,7 +97,7 @@ ADAPTERJ.widget.Link.prototype = {
     _text: undefined,
         
     /**
-     * Initializes the Link object
+     * Initializes the Anchor object
      *
      * @parm length 
      * @private
@@ -132,18 +132,18 @@ ADAPTERJ.widget.Link.prototype = {
     },
     
     toString: function() {
-        return "Link{ text:" + this._text + ", url:" + this._url + " }";
+        return "Anchor{ text:" + this._text + ", url:" + this._url + " }";
     }
 };
 
 /**
- * LinkGroup
+ * AnchorGroup
  */
-ADAPTERJ.widget.LinkGroup = function(length) {
+ADAPTERJ.widget.AnchorGroup = function(length) {
     this.init(length);
 };
 
-ADAPTERJ.widget.LinkGroup.prototype = {
+ADAPTERJ.widget.AnchorGroup.prototype = {
     
     /**
      *
@@ -155,33 +155,33 @@ ADAPTERJ.widget.LinkGroup.prototype = {
      *
      * @type Text[]
      */
-    _links: undefined,
+    _anchors: undefined,
     
     /**
-     * Initializes the LinkGroup object 
+     * Initializes the AnchorGroup object 
      *
      * @parm length 
      * @private
      */
     init: function(length) {
         this._length = length;
-        this._links  = new Array(length);
+        this._anchors = new Array(length);
     },
 
     length: function() {
-        return this._links.length;
+        return this._anchors.length;
     },
     
     setText: function(index, text) {
-        this._links[index] = text;
+        this._anchors[index] = text;
     },
         
     getText: function(index) {
-        return this._links[index];
+        return this._anchors[index];
     },
     
     toString: function() {
-        return "LinkGroup{ length:" + this._length + " }";
+        return "AnchorGroup{ length:" + this._length + " }";
     }
 };
 
@@ -438,7 +438,7 @@ ADAPTERJ.widget.POJOAdapter = function(id) {
     }
     
     this._data  = undefined;
-    this._links = undefined;
+    this._anchors = undefined;
     this._placeholder = ("");
 };
 
@@ -446,11 +446,11 @@ ADAPTERJ.widget.POJOAdapter.prototype = new ADAPTERJ.widget.Adapter();
 
 ADAPTERJ.widget.POJOAdapter.prototype.setData = function(data) { this._data = data; };
 
-ADAPTERJ.widget.POJOAdapter.prototype.setLinkGroup = function(links) {
-    if (!(links instanceof ADAPTERJ.widget.LinkGroup)) {
-        throw new TypeError("links MUST be an instance of LinkGroup");
+ADAPTERJ.widget.POJOAdapter.prototype.setAnchorGroup = function(anchors) {
+    if (!(anchors instanceof ADAPTERJ.widget.AnchorGroup)) {
+        throw new TypeError("anchors MUST be an instance of AnchorGroup");
     }
-    this._links = links;
+    this._anchors = anchors;
 };
 
 ADAPTERJ.widget.POJOAdapter.prototype.setPlaceholderForNull = function(placeholder) {
@@ -505,13 +505,13 @@ ADAPTERJ.widget.SimpleViewAdapter.prototype.bindViewHolder = function() {
             valueMap[id] = value;
         }
         
-        if (this._links) {
-            for (var i = 0; i < this._links.length(); i ++) {
-                var link = this._links.getLink(i);
-                var id = link.getId() + "[" + i + "]";
+        if (this._anchors) {
+            for (var i = 0; i < this._anchors.length(); i ++) {
+                var anchor = this._anchors.getAnchor(i);
+                var id = anchor.getId() + "[" + i + "]";
                 
-                valueMap[id + ".text"] = link.getText();
-                valueMap[id + ".url"] = link.getURL();
+                valueMap[id + ".text"] = anchor.getText();
+                valueMap[id + ".url"] = anchor.getURL();
             }
         }
         
@@ -583,13 +583,13 @@ ADAPTERJ.widget.SimpleFormAdapter.prototype.bindViewHolder = function() {
             valueMap[id] = value;
         }
         
-        if (this._links) {
-            for (var i = 0; i < this._links.length(); i ++) {
-                var link = this._links.getLink(i);
-                var id = link.getId() + "[" + i + "]";
+        if (this._anchors) {
+            for (var i = 0; i < this._anchors.length(); i ++) {
+                var anchor = this._anchors.getAnchor(i);
+                var id = anchor.getId() + "[" + i + "]";
                 
-                valueMap[id + ".text"] = link.getText();
-                valueMap[id + ".url"] = link.getURL();
+                valueMap[id + ".text"] = anchor.getText();
+                valueMap[id + ".url"] = anchor.getURL();
             }
         }
         
@@ -651,7 +651,7 @@ ADAPTERJ.widget.ListAdapter = function(id) {
     this._indexId = "i";
     
     this._data  = [ ];
-    this._linksArray = [ ];
+    this._anchorsArray = [ ];
     this._placeholderForNull = ("");
     this._placeholderForEmpty = ("");
 };
@@ -668,17 +668,17 @@ ADAPTERJ.widget.ListAdapter.prototype.addAllItems = function(data) {
 
 ADAPTERJ.widget.ListAdapter.prototype.clear = function(data) { this._data = [ ]; };
 
-ADAPTERJ.widget.ListAdapter.prototype.addLinkGroup = function(links) {
-    if (!(links instanceof ADAPTERJ.widget.LinkGroup)) {
-        throw new TypeError("links MUST be an instance of LinkGroup");
+ADAPTERJ.widget.ListAdapter.prototype.addAnchorGroup = function(anchors) {
+    if (!(anchors instanceof ADAPTERJ.widget.AnchorGroup)) {
+        throw new TypeError("anchors MUST be an instance of AnchorGroup");
     }
     
-    var length = this._linksArray.length;
-    var linksArray = new Array(length + 1);
-    for (var i = 0; i < this._linksArray.length; i ++) { linksArray[i] = this._linksArray[i]; };
-    linksArray[length] = links;
+    var length = this._anchorsArray.length;
+    var anchorsArray = new Array(length + 1);
+    for (var i = 0; i < this._anchorsArray.length; i ++) { anchorsArray[i] = this._anchorsArray[i]; };
+    anchorsArray[length] = anchors;
     
-    this._linksArray = linksArray;
+    this._anchorsArray = anchorsArray;
 };
 
 ADAPTERJ.widget.ListAdapter.prototype.setPlaceholderForNull = function(placeholder) {
@@ -750,15 +750,15 @@ ADAPTERJ.widget.SimpleListAdapter.prototype.bindViewHolder = function() {
             valueMap[id] = value;
         }
         
-        var links = this._linksArray[i];
-        if (links) {
-            for (var j = 0; j < links.length(); j ++) {
-                var link = links.getLink(j);
-                if (link) {
-                    var id = link.getId() + indexIj + "[" + j + "]";
+        var anchors = this._anchorsArray[i];
+        if (anchors) {
+            for (var j = 0; j < anchors.length(); j ++) {
+                var anchor = anchors.getAnchor(j);
+                if (anchor) {
+                    var id = anchor.getId() + indexIj + "[" + j + "]";
                     
-                    valueMap[id + ".text"] = link.getText();
-                    valueMap[id + ".url"] = link.getURL();
+                    valueMap[id + ".text"] = anchor.getText();
+                    valueMap[id + ".url"] = anchor.getURL();
                 }
             }
         }

@@ -240,37 +240,37 @@ public class SimpleHttpParametersResolver<T> implements HttpParametersResolver<T
 			final String classId = instanceId;
 			final String className = _registry.getPOJOClassName(instanceId);
 			if (className == null) {
-	            StackTraceElement t = (new Throwable()).getStackTrace()[0];
-	            String f = "(%s:%d) %s: Unknown class id: \"%s\". You CAN check \"WEB-INF/classes/adpj.properties\" on server side for more information.";
-	            String error = String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName(), classId);
-	            if (DEBUG) Log.e(TAG, error);
-	            throw new ServerSideException(error);
+				StackTraceElement t = (new Throwable()).getStackTrace()[0];
+				String f = "(%s:%d) %s: Unknown class id: \"%s\". You CAN check \"WEB-INF/classes/adpj.properties\" on server side for more information.";
+				String error = String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName(), classId);
+				if (DEBUG) Log.e(TAG, error);
+				throw new ServerSideException(error);
 			}
 			try {
 				instance = (T) Class.forName(className).newInstance();
 			} catch (ClassNotFoundException thrown) {
-	            StackTraceElement t = (new Throwable()).getStackTrace()[0];
-	            String f = "(%s:%d) %s: ClassNotFoundException: ";
-	            final String error = String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName());
-	            if (DEBUG) Log.e(TAG, error, thrown);
+				StackTraceElement t = (new Throwable()).getStackTrace()[0];
+				String f = "(%s:%d) %s: ClassNotFoundException: ";
+				final String error = String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName());
+				if (DEBUG) Log.e(TAG, error, thrown);
 				throw new ServerSideException(error);
 			} catch (InstantiationException thrown) {
-	            StackTraceElement t = (new Throwable()).getStackTrace()[0];
-	            String f = "(%s:%d) %s: InstantiationException: ";
-	            final String error = String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName());
-	            if (DEBUG) Log.e(TAG, error, thrown);
+				StackTraceElement t = (new Throwable()).getStackTrace()[0];
+				String f = "(%s:%d) %s: InstantiationException: ";
+				final String error = String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName());
+				if (DEBUG) Log.e(TAG, error, thrown);
 				throw new ServerSideException(error);
 			} catch (IllegalAccessException thrown) {
-	            StackTraceElement t = (new Throwable()).getStackTrace()[0];
-	            String f = "(%s:%d) %s: IllegalAccessException: ";
-	            final String error = String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName());
-	            if (DEBUG) Log.e(TAG, error, thrown);
+				StackTraceElement t = (new Throwable()).getStackTrace()[0];
+				String f = "(%s:%d) %s: IllegalAccessException: ";
+				final String error = String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName());
+				if (DEBUG) Log.e(TAG, error, thrown);
 				throw new ServerSideException(error);
 			} catch (Throwable thrown) {
-	            StackTraceElement t = (new Throwable()).getStackTrace()[0];
-	            String f = "(%s:%d) %s: Throwable: ";
-	            final String error = String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName());
-	            if (DEBUG) Log.e(TAG, error, thrown);
+				StackTraceElement t = (new Throwable()).getStackTrace()[0];
+				String f = "(%s:%d) %s: Throwable: ";
+				final String error = String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName());
+				if (DEBUG) Log.e(TAG, error, thrown);
 				throw new ServerSideException(error);
 			}
 			if (instance != null) {
@@ -546,18 +546,18 @@ public class SimpleHttpParametersResolver<T> implements HttpParametersResolver<T
 		try {
 			httpRequest.setCharacterEncoding(_charset = charset); // utf-8
 		} catch (UnsupportedEncodingException thrown) {
-            final StackTraceElement t = (new Throwable()).getStackTrace()[0];
-            final String f = "(%s:%d) %s: UnsupportedEncodingException: %s";
-            final String error = String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName(), charset);
-            if (DEBUG) Log.e(TAG, error, thrown);
-            throw new ServerSideException(error, thrown);
+			final StackTraceElement t = (new Throwable()).getStackTrace()[0];
+			final String f = "(%s:%d) %s: UnsupportedEncodingException: %s";
+			final String error = String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName(), charset);
+			if (DEBUG) Log.e(TAG, error, thrown);
+			throw new ServerSideException(error, thrown);
 		}
 
 		if (httpRequest == null) {
-            StackTraceElement t = (new Throwable()).getStackTrace()[0];
-            String f = "(%s:%d) %s: The input parameter httpRequest is null. Return a null output parameter";
-            final String error = String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName());
-            if (DEBUG) Log.e(TAG, error);
+			StackTraceElement t = (new Throwable()).getStackTrace()[0];
+			String f = "(%s:%d) %s: The input parameter httpRequest is null. Return a null output parameter";
+			final String error = String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName());
+			if (DEBUG) Log.e(TAG, error);
 			throw new ServerSideException(error);
 		}
 
@@ -577,48 +577,48 @@ public class SimpleHttpParametersResolver<T> implements HttpParametersResolver<T
 			// Such as: product.name, order.price, product[0].name, order[1].price, ... 
 			final String pName = iter_p.next();
 			if (DEBUG) {
-	            StackTraceElement t = (new Throwable()).getStackTrace()[0];
-	            String f = "(%s:%d) %s: pName is \"%s\"";
-	            Log.i(TAG, String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName(), pName));
+				StackTraceElement t = (new Throwable()).getStackTrace()[0];
+				String f = "(%s:%d) %s: pName is \"%s\"";
+				Log.i(TAG, String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName(), pName));
 			}
 			
 			final boolean plaintext = isPlaintextParameter(pName);
 			if (plaintext) {
 				if (DEBUG) {
-		            StackTraceElement t = (new Throwable()).getStackTrace()[0];
-		            String f = "(%s:%d) %s: a plain-text parameter: pName is \"%s\"";
-		            Log.w(TAG, String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName(), pName));
+					StackTraceElement t = (new Throwable()).getStackTrace()[0];
+					String f = "(%s:%d) %s: a plain-text parameter: pName is \"%s\"";
+					Log.w(TAG, String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName(), pName));
 				}
 				final String[] pValues = httpMap.get(pName);
 				final Object instance = pValues.length == 1 ? (Object) pValues[0] : (Object) pValues;
 				try { 
 					returnMap.put(pName, (T) instance);
 				} catch (Throwable thrown) { 
-		            StackTraceElement t = (new Throwable()).getStackTrace()[0];
-		            String f = "(%s:%d) %s: error when converting an instance into T: pName is \"%s\"";
-		            Log.w(TAG, String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName(), pName));
+					StackTraceElement t = (new Throwable()).getStackTrace()[0];
+					String f = "(%s:%d) %s: error when converting an instance into T: pName is \"%s\"";
+					Log.w(TAG, String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName(), pName));
 				}
 			} else {
 				// Such as: product, order, product[0], order[1], ... 
 				final String instanceId = getInstanceIdFromParameterName(pName);
 				if (DEBUG) {
-		            StackTraceElement t = (new Throwable()).getStackTrace()[0];
-		            String f = "(%s:%d) %s: instance id is %s";
-		            Log.i(TAG, String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName(), instanceId));
+					StackTraceElement t = (new Throwable()).getStackTrace()[0];
+					String f = "(%s:%d) %s: instance id is %s";
+					Log.i(TAG, String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName(), instanceId));
 				}
 				if (instanceId != null) {
 					final String attributeId = getAttributeIdFromParameterName(pName);
 					if (DEBUG) {
-			            StackTraceElement t = (new Throwable()).getStackTrace()[0];
-			            String f = "(%s:%d) %s: attribute id is %s";
-			            Log.i(TAG, String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName(), attributeId));
+						StackTraceElement t = (new Throwable()).getStackTrace()[0];
+						String f = "(%s:%d) %s: attribute id is %s";
+						Log.i(TAG, String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName(), attributeId));
 					}
 					
 					final String[] pValues = httpMap.get(pName);
 					if (DEBUG) {
-			            StackTraceElement t = (new Throwable()).getStackTrace()[0];
-			            String f = "(%s:%d) %s: parameter values is %s (%d)";
-			            Log.i(TAG, String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName(), pValues, pValues.length));
+						StackTraceElement t = (new Throwable()).getStackTrace()[0];
+						String f = "(%s:%d) %s: parameter values is %s (%d)";
+						Log.i(TAG, String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName(), pValues, pValues.length));
 					}
 					
 					if (pValues.length > 0) {
@@ -627,9 +627,9 @@ public class SimpleHttpParametersResolver<T> implements HttpParametersResolver<T
 							instanceMap = new HashMap<String, String>();
 						}
 						if (DEBUG) {
-				            StackTraceElement t = (new Throwable()).getStackTrace()[0];
-				            String f = "(%s:%d) %s: parameter values[0] is \"%s\"";
-				            Log.i(TAG, String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName(), pValues[0]));
+							StackTraceElement t = (new Throwable()).getStackTrace()[0];
+							String f = "(%s:%d) %s: parameter values[0] is \"%s\"";
+							Log.i(TAG, String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName(), pValues[0]));
 						}
 						instanceMap.put(attributeId, pValues[0]);
 						parameterMap.put(instanceId, instanceMap);
@@ -646,44 +646,44 @@ public class SimpleHttpParametersResolver<T> implements HttpParametersResolver<T
 			final String classId = getClassIdFromInstanceId(instanceId);
 			if (DEBUG) {
 				final StackTraceElement t = (new Throwable()).getStackTrace()[0];
-	            final String f = "(%s:%d) %s: class id is %s, instance id is %s";
-	            Log.e(TAG, String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName(), classId, instanceId));
+				final String f = "(%s:%d) %s: class id is %s, instance id is %s";
+				Log.e(TAG, String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName(), classId, instanceId));
 			}
 			
 			final String className = _registry.getPOJOClassName(classId);
 			if (className == null) {
-	            StackTraceElement t = (new Throwable()).getStackTrace()[0];
-	            String f = "(%s:%d) %s: Unknown class id: \"%s\". You CAN check \"WEB-INF/classes/adpj.properties\" on server side for more information.";
-	            String error = String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName(), classId);
-	            if (DEBUG) Log.e(TAG, error);
-	            throw new ServerSideException(error);
+				StackTraceElement t = (new Throwable()).getStackTrace()[0];
+				String f = "(%s:%d) %s: Unknown class id: \"%s\". You CAN check \"WEB-INF/classes/adpj.properties\" on server side for more information.";
+				String error = String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName(), classId);
+				if (DEBUG) Log.e(TAG, error);
+				throw new ServerSideException(error);
 			} else {
 				T instance = null;
 				try {
 					instance = (T) Class.forName(className).newInstance();
 				} catch (ClassNotFoundException thrown) {
-		            StackTraceElement t = (new Throwable()).getStackTrace()[0];
-		            String f = "(%s:%d) %s: ClassNotFoundException: ";
-		            final String error = String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName());
-		            if (DEBUG) Log.e(TAG, error, thrown);
+					StackTraceElement t = (new Throwable()).getStackTrace()[0];
+					String f = "(%s:%d) %s: ClassNotFoundException: ";
+					final String error = String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName());
+					if (DEBUG) Log.e(TAG, error, thrown);
 					throw new ServerSideException(error);
 				} catch (InstantiationException thrown) {
-		            StackTraceElement t = (new Throwable()).getStackTrace()[0];
-		            String f = "(%s:%d) %s: InstantiationException: ";
-		            final String error = String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName());
-		            if (DEBUG) Log.e(TAG, error, thrown);
+					StackTraceElement t = (new Throwable()).getStackTrace()[0];
+					String f = "(%s:%d) %s: InstantiationException: ";
+					final String error = String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName());
+					if (DEBUG) Log.e(TAG, error, thrown);
 					throw new ServerSideException(error);
 				} catch (IllegalAccessException thrown) {
-		            StackTraceElement t = (new Throwable()).getStackTrace()[0];
-		            String f = "(%s:%d) %s: IllegalAccessException: ";
-		            final String error = String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName());
-		            if (DEBUG) Log.e(TAG, error, thrown);
+					StackTraceElement t = (new Throwable()).getStackTrace()[0];
+					String f = "(%s:%d) %s: IllegalAccessException: ";
+					final String error = String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName());
+					if (DEBUG) Log.e(TAG, error, thrown);
 					throw new ServerSideException(error);
 				} catch (Throwable thrown) {
-		            StackTraceElement t = (new Throwable()).getStackTrace()[0];
-		            String f = "(%s:%d) %s: Throwable: ";
-		            final String error = String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName());
-		            if (DEBUG) Log.e(TAG, error, thrown);
+					StackTraceElement t = (new Throwable()).getStackTrace()[0];
+					String f = "(%s:%d) %s: Throwable: ";
+					final String error = String.format(f, t.getFileName(), t.getLineNumber(), t.getMethodName());
+					if (DEBUG) Log.e(TAG, error, thrown);
 					throw new ServerSideException(error);
 				}
 				if (instance != null) {

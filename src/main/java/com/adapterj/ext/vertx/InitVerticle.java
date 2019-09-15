@@ -17,13 +17,14 @@ package com.adapterj.ext.vertx;
 
 import java.util.Properties;
 
+import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Context;
 import io.vertx.core.Vertx;
 import io.vertx.core.http.HttpServerRequest;
 
 import com.adapterj.serverside.ServerSideContext;
 
-public abstract class AbstractVerticle extends io.vertx.core.AbstractVerticle implements ServerSideContext {
+public class InitVerticle extends AbstractVerticle implements ServerSideContext {
 
     private final Properties _properties = new Properties();
 
@@ -53,7 +54,7 @@ public abstract class AbstractVerticle extends io.vertx.core.AbstractVerticle im
 		super.init(vertx, context);
 		
 		try {
-			_properties.load(AbstractVerticle.class.getResourceAsStream(_propertiesFile));
+			_properties.load(InitVerticle.class.getResourceAsStream(_propertiesFile));
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
