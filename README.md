@@ -115,7 +115,7 @@ Due to the time pressure of the project at that time, I wrote the part that was 
 
 <br/>
 
-## Examples
+## Example Projects
 
 * Example 1: [AdapterJ + Servlet](https://github.com/york-deng/adapterj-example-servlet)   
 
@@ -127,7 +127,7 @@ Due to the time pressure of the project at that time, I wrote the part that was 
 
 <br/>
 
-## Benchmark
+## Benchmark Project
 [JMH benchmark for popular Java template engines](https://github.com/york-deng/template-benchmark)   
 
 <br/>
