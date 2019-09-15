@@ -114,3 +114,16 @@ Due to the time pressure of the project at that time, I wrote the part that was 
 </div>
 
 <br/>
+
+## Examples
+
+* Example 1: [AdapterJ + Servlet](https://github.com/york-deng/adapterj-example-servlet)   
+
+* Example 2: [AdapterJ + Spring MVC + Spring Boot](https://github.com/york-deng/adapterj-example-spring)   
+
+* Example 3: [AdapterJ + Vert.x](https://github.com/york-deng/adapterj-example-vertx)   
+
+* Example 4: [AdapterJ + Vert.x + Spring Boot](#)   
+
+<br/>
+
