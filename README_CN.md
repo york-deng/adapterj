@@ -125,3 +125,10 @@ HTML文件就是Web应用的唯一的视图，还是一个极具灵活性的视�
 
 <br/>
 
+## 基准测试
+[JMH benchmark for popular Java template engines](https://github.com/york-deng/template-benchmark)   
+
+<br/>
+
+<br/>
+

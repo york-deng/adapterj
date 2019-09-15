@@ -127,3 +127,10 @@ Due to the time pressure of the project at that time, I wrote the part that was 
 
 <br/>
 
+## Benchmark
+[JMH benchmark for popular Java template engines](https://github.com/york-deng/template-benchmark)   
+
+<br/>
+
+<br/>
+
