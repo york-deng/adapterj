@@ -121,7 +121,7 @@ HTML文件就是Web应用的唯一的视图，还是一个极具灵活性的视�
 
 * 范例3: [AdapterJ + Vert.x](https://github.com/york-deng/adapterj-example-vertx)   
 
-* 范例4: [AdapterJ + Vert.x + Spring Boot](https://github.com/york-deng/adapterj-example-vertx-spring-boot)   
+* 范例4: [AdapterJ + Vert.x + Spring Boot + Spring Data](https://github.com/york-deng/adapterj-example-vertx-spring)   
 
 <br/>
 

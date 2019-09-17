@@ -123,7 +123,7 @@ Due to the time pressure of the project at that time, I wrote the part that was 
 
 * Example 3: [AdapterJ + Vert.x](https://github.com/york-deng/adapterj-example-vertx)   
 
-* Example 4: [AdapterJ + Vert.x + Spring Boot](https://github.com/york-deng/adapterj-example-vertx-spring-boot)   
+* Example 4: [AdapterJ + Vert.x + Spring Boot + Spring Data](https://github.com/york-deng/adapterj-example-vertx-spring)   
 
 <br/>
 
