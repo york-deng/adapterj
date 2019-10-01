@@ -55,8 +55,49 @@
         <java.version>1.8</java.version>
     </properties>
 
+    <pluginRepositories>
+        <pluginRepository>
+            <id>EvoSuite</id>
+            <name>EvoSuite Repository</name>
+            <url>http://www.evosuite.org/m2</url>
+        </pluginRepository>
+    </pluginRepositories>
+
     <build>
         <plugins>
+	    <!-- Automatically generate unit test code -->
+            <plugin>
+                <groupId>org.evosuite.plugins</groupId>
+                <artifactId>evosuite-maven-plugin</artifactId>
+                <version>1.0.5</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare</goal>
+                        </goals>
+                        <phase>process-test-classes</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+                <configuration>
+                    <systemPropertyVariables>
+                        <java.awt.headless>true</java.awt.headless>
+                    </systemPropertyVariables>
+                    <testFailureIgnore>true</testFailureIgnore>
+                    <skipTests>false</skipTests>
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>org.evosuite.runtime.InitializingListener</value>
+                        </property>
+                    </properties>
+                </configuration>
+            </plugin>
+	    
             <!-- We specify the Maven compiler plugin as we need to set it to Java 1.8 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -66,13 +107,12 @@
                     <source>1.8</source>
                     <target>1.8</target>
 	                <excludes>
-	                    <exclude>**/AdapterJObjectInputStream.java</exclude>
-	                    <exclude>**/AdapterJClassLoader.java</exclude>
+	                    <exclude>**/ObjectInputStream.java</exclude>
+	                    <exclude>**/ClassLoader.java</exclude>
 	                    <exclude>**/test/widget/*.java</exclude>
 	                </excludes>
                 </configuration>
             </plugin>
-            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -80,9 +120,9 @@
                 <configuration>
                     <attach>true</attach>
 	                <sourceFileExcludes>
-		                <sourceFileExclude>**/AdapterJObjectInputStream.java</sourceFileExclude>
-		                <sourceFileExclude>**/AdapterJClassLoader.java</sourceFileExclude>
-		                <sourceFileExclude>**/test/widget/*.java</sourceFileExclude>
+			    <sourceFileExclude>**/ObjectInputStream.java</sourceFileExclude>
+			    <sourceFileExclude>**/ClassLoader.java</sourceFileExclude>
+			    <sourceFileExclude>**/test/widget/*.java</sourceFileExclude>
 	                </sourceFileExcludes>
                 </configuration>
                 <executions>
@@ -94,16 +134,15 @@
                     </execution>
                 </executions>
             </plugin>
-            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.0.0</version>
                 <configuration>
 	                <sourceFileExcludes>
-		                <sourceFileExclude>**/AdapterJObjectInputStream.java</sourceFileExclude>
-		                <sourceFileExclude>**/AdapterJClassLoader.java</sourceFileExclude>
-		                <sourceFileExclude>**/test/widget/*.java</sourceFileExclude>
+			    <sourceFileExclude>**/ObjectInputStream.java</sourceFileExclude>
+			    <sourceFileExclude>**/ClassLoader.java</sourceFileExclude>
+			    <sourceFileExclude>**/test/widget/*.java</sourceFileExclude>
 	                </sourceFileExcludes>
                 </configuration>
                 <executions>
@@ -140,35 +179,44 @@
             <artifactId>javassist</artifactId>
             <version>3.24.1-GA</version>
         </dependency>
-
         <dependency>
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
             <version>1.11.3</version>
         </dependency>
-
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.6.2</version>
         </dependency>
-        
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>3.0.1</version>
         </dependency>
-
         <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-core</artifactId>
             <version>3.8.1</version>
         </dependency>
-        
         <dependency>
             <groupId>com.esotericsoftware</groupId>
             <artifactId>kryo</artifactId>
             <version>5.0.0-RC4</version>
         </dependency>
+	
+	<!-- Unit Test -->
+	<dependency>
+	    <groupId>junit</groupId>
+	    <artifactId>junit</artifactId>
+	    <version>4.12</version>
+	    <scope>test</scope>
+	</dependency>
+	<dependency>
+	    <groupId>org.evosuite</groupId>
+	    <artifactId>evosuite-standalone-runtime</artifactId>
+	    <version>1.0.6</version>
+	    <scope>test</scope>
+	</dependency>
     </dependencies>
 </project>
