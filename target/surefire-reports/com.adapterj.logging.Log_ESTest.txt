@@ -1,0 +1,20 @@
+-------------------------------------------------------------------------------
+Test set: com.adapterj.logging.Log_ESTest
+-------------------------------------------------------------------------------
+Tests run: 26, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.152 sec <<< FAILURE! - in com.adapterj.logging.Log_ESTest
+test23(com.adapterj.logging.Log_ESTest)  Time elapsed: 0.022 sec  <<< FAILURE!
+org.junit.ComparisonFailure: 
+expected:<...ul><li>null<ul><li>([null:-1) newInstance]: </li>
+<li>(<evosui...> but was:<...ul><li>null<ul><li>([Log_ESTest.java:266) test23]: </li>
+<li>(<evosui...>
+	at com.adapterj.logging.Log_ESTest.test23(Log_ESTest.java:268)
+
+test24(com.adapterj.logging.Log_ESTest)  Time elapsed: 0.004 sec  <<< FAILURE!
+org.junit.ComparisonFailure: 
+expected:<qISpz$RAo
+([null:-1) newInstance]: 
+(<evosuite>:-1) <...> but was:<qISpz$RAo
+([Log_ESTest.java:273) test24]: 
+(<evosuite>:-1) <...>
+	at com.adapterj.logging.Log_ESTest.test24(Log_ESTest.java:275)
+

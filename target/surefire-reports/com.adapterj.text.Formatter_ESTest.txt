@@ -1,0 +1,32 @@
+-------------------------------------------------------------------------------
+Test set: com.adapterj.text.Formatter_ESTest
+-------------------------------------------------------------------------------
+Tests run: 132, Failures: 7, Errors: 0, Skipped: 0, Time elapsed: 0.437 sec <<< FAILURE! - in com.adapterj.text.Formatter_ESTest
+test086(com.adapterj.text.Formatter_ESTest)  Time elapsed: 0.003 sec  <<< FAILURE!
+org.junit.ComparisonFailure: expected:<0[00000000000-- :]> but was:<0[]>
+	at com.adapterj.text.Formatter_ESTest.test086(Formatter_ESTest.java:756)
+
+test083(com.adapterj.text.Formatter_ESTest)  Time elapsed: 0.003 sec  <<< FAILURE!
+org.junit.ComparisonFailure: expected:<0[00000000112-- :]> but was:<0[.00]>
+	at com.adapterj.text.Formatter_ESTest.test083(Formatter_ESTest.java:709)
+
+test085(com.adapterj.text.Formatter_ESTest)  Time elapsed: 0.003 sec  <<< FAILURE!
+org.junit.ComparisonFailure: expected:<[000000001564]> but was:<[F[1~jj#`j]O]>
+	at com.adapterj.text.Formatter_ESTest.test085(Formatter_ESTest.java:749)
+
+test068(com.adapterj.text.Formatter_ESTest)  Time elapsed: 0.004 sec  <<< FAILURE!
+org.junit.ComparisonFailure: expected:<0[00000000000-- :]> but was:<0[.00]>
+	at com.adapterj.text.Formatter_ESTest.test068(Formatter_ESTest.java:598)
+
+test069(com.adapterj.text.Formatter_ESTest)  Time elapsed: 0.003 sec  <<< FAILURE!
+org.junit.ComparisonFailure: expected:<0[]> but was:<0[.00]>
+	at com.adapterj.text.Formatter_ESTest.test069(Formatter_ESTest.java:605)
+
+test056(com.adapterj.text.Formatter_ESTest)  Time elapsed: 0.004 sec  <<< FAILURE!
+org.junit.ComparisonFailure: expected:<[000000000001]> but was:<[#,##0.00]>
+	at com.adapterj.text.Formatter_ESTest.test056(Formatter_ESTest.java:510)
+
+test021(com.adapterj.text.Formatter_ESTest)  Time elapsed: 0.003 sec  <<< FAILURE!
+org.junit.ComparisonFailure: expected:<0[00000002040]> but was:<0[]>
+	at com.adapterj.text.Formatter_ESTest.test021(Formatter_ESTest.java:193)
+
